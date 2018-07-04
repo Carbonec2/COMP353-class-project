@@ -2,16 +2,16 @@
 
 interface TDG{
 
-public static get($index);
+public static function get($index);
 
-public static getAll($filters);
+public static function getAll($filters);
 
-public static save($valueObject);
+public static function save($valueObject);
 
-public static insert($valueObject);
+public static function insert($valueObject);
 
-public static update($valueObject);
+public static function update($valueObject);
 
-public static delete($index);
+public static function delete($index);
 
 }

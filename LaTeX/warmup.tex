@@ -40,21 +40,26 @@
 
   \node[entity] (man) [below left=1cm of isa] {Manager} edge (isa);
 
-  \node[relationship] (nego) [left=of man] {Negotiate} edge (man);
+  \node[relationship] (nego) [left=of man] {Sells} edge (man);
   
-  \node[weak entity] (con) [below=of nego] {Contract} edge (nego);
-  \node[attribute] (cType) [below left=0.5cm of con] {Type} edge (con);
-  \node[attribute] (cID) [below right=0.5cm of con] {\key{ID}} edge (con);
+  \node[weak entity] (sales) [below=of nego] {Services} edge (nego);
+  \node[attribute] (cType) [below left=0.5cm of sales] {Type} edge (sales);
+  \node[attribute] (cID) [below right=0.5cm of sales] {\key{ID}} edge (sales);
   
   \node[relationship] (work) [right=3.5cm of emp] {Work} edge (emp);
   
-  \node[relationship] (con) [below right=1cm of isa] {Control} edge (man);
+  \node[relationship] (con) [below right=1cm of isa] {Controls} edge (man);
   \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge (con);
   \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep); 
   
-  \node[relationship] (rel_left) [below = 0.5cm of man] {something} edge (man);
-  \node[weak entity] (sales) [below = 4cm of con] {Sales} edge (rel_left);
-  \node[relationship] (rel_right) [below = 0.5cm of dep] {something} edge (dep) edge (sales);
+  \node[relationship] (rel_left) [below = 0.5cm of man] {Negotiates} edge (man);
+  \node[weak entity] (contract) [below = 0.75cm of con] {Contract} edge (rel_left);
+%   \node[relationship] (rel_right) [below = 0.5cm of dep] {Operates} edge (dep) edge (contract);
+  
+  \node[weak entity] (client) [below = 4cm of sales] {Client};
+  \node[relationship] (buys) [below = 1cm of sales] {Buys} edge (sales) edge (client);
+  \node[relationship] (signs) [below = 4cm of contract] {Signs} edge (contract) edge (client);
+  
 
 \end{tikzpicture}
 }

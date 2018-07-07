@@ -43,16 +43,18 @@
   \node[relationship] (nego) [left=of man] {Negotiate} edge (man);
   
   \node[weak entity] (con) [below=of nego] {Contract} edge (nego);
-  \node[attribute] (cID) [below left=0.5cm of con] {Type} edge (con);
+  \node[attribute] (cType) [below left=0.5cm of con] {Type} edge (con);
   \node[attribute] (cID) [below right=0.5cm of con] {\key{ID}} edge (con);
   
   \node[relationship] (work) [right=3.5cm of emp] {Work} edge (emp);
   
   \node[relationship] (con) [below right=1cm of isa] {Control} edge (man);
-  
   \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge (con);
+  \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep); 
   
-  \node[attribute] (Dep_Name) [below = 1cm of dep] {Name} edge (dep); 
+  \node[relationship] (rel_left) [below = 0.5cm of man] {something} edge (man);
+  \node[weak entity] (sales) [below = 4cm of con] {Sales} edge (rel_left);
+  \node[relationship] (rel_right) [below = 0.5cm of dep] {something} edge (dep) edge (sales);
 
 \end{tikzpicture}
 }
@@ -68,5 +70,6 @@
     \item A manager can only control one department.
     \item There may be multiple contracts of the same grade.
     \item Each contract is managed by one employee.
+    \item Address consists of the Street Address, City, Province and Postal Code
 \end{enumerate}
 \end{document}

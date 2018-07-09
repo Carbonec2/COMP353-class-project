@@ -123,3 +123,16 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- d1)
+INSERT INTO 'Contract' VALUES ('123', 'Premium', '1', 'John', "Smith", 'GSCCorporation@gmail.com', 'Montreal', 'Quebec', 'Q1Q 1Q1', '90000', '10000', NOW(), 'On Premise');
+
+-- d2)
+
+-- d3)
+
+-- d4) 
+
+-- d5)
+SELECT * from 'Contract' WHERE Contract.ID=Employee.id AND Employee.firstName='Juan' AND Employee.lastName='Vasquez';

@@ -54,6 +54,7 @@
   \node[relationship] (con) [below right=1cm of isa] {Controls} edge (man);
   \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge [<-] (con);
   \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep); 
+  \node[attribute] (Dep_ID) [below =0.5cm of dep] {\key{ID}} edge (dep);
   
   \node[relationship] (rel_left) [below = 0.5cm of man] {Negotiates} edge (man);
   \node[weak entity] (contract) [below = 0.75cm of con] {Contract} edge (rel_left);

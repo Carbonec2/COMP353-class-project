@@ -34,9 +34,9 @@
 \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
 
   \node[entity] (emp) {Employee};
-  \node[attribute] (eFirst) [above=of emp] {First Name} edge (emp);
-  \node[attribute] (eMiddle) [above left=of emp] {Middle Initial} edge (emp);
-  \node[attribute] (eFamily) [below left=of emp] {Family Name} edge (emp);
+  \node[attribute] (eFirst) [above=of emp] {firstName} edge (emp);
+  \node[attribute] (eMiddle) [above left=of emp] {middleInitial} edge (emp);
+  \node[attribute] (eFamily) [below left=of emp] {lastName} edge (emp);
   \node[attribute] (enum) [above right=of emp] {\key{ID}} edge (emp);
   
   \node[relationship] (work) [right=3.5cm of emp] {Work} edge (emp);
@@ -53,6 +53,12 @@
   
   \node[weak entity] (sales) [above right=of nego] {Services} edge (nego);
   \node[attribute] (cType) [right=0.5cm of sales] {Type} edge (sales);
+  
+  \node[attribute] (res) [right= 2.5cm of contract] {responsible} edge (contract);
+  \node[attribute] (rFirst) [above=of res] {firstName} edge (res);
+  \node[attribute] (rMiddle) [right = of res] {middleInitial} edge (res);
+  \node[attribute] (eFamily) [below =of res] {lastName} edge (res);
+
   
 
 \end{tikzpicture}

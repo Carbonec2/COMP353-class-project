@@ -42,20 +42,21 @@
   \node[isa] (isa) [below=1cm of emp] {ISA} edge (emp);
 
   \node[entity] (man) [below left=1cm of isa] {Manager} edge (isa);
-
-  \node[relationship] (nego) [left=of man] {Sells} edge (man);
-  
-  \node[weak entity] (sales) [below=of nego] {Services} edge (nego);
-  \node[attribute] (cType) [right=0.5cm of sales] {Type} edge (sales);
   
   \node[relationship] (work) [right=3.5cm of emp] {Work} edge (emp);
   
   \node[relationship] (con) [below right=1cm of isa] {Controls} edge (man);
   \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge [<-] (con);
-  \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep); 
+  \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep);
+  \node[attribute] (Dep_ID) [below = 2cm of dep] {ManagerID} edge (dep); 
   
   \node[relationship] (rel_left) [left = 6cm of emp] {Confirms} edge (emp);
   \node[weak entity] (contract) [below = 7.5cm of rel_left] {Contract} edge (rel_left);
+  
+  \node[relationship] (nego) [right=of contract] {Sells} edge (contract);
+  
+  \node[weak entity] (sales) [above=of nego] {Services} edge (nego);
+  \node[attribute] (cType) [right=0.5cm of sales] {Type} edge (sales);
   
 
 \end{tikzpicture}

@@ -14,6 +14,7 @@
 \pagestyle{fancy}
 \lhead{COMP353\\Warm-Up}
 \rhead{~\\ycc353}
+
 \usetikzlibrary{positioning}
 \usetikzlibrary{shadows}
 
@@ -33,7 +34,9 @@
 \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
 
   \node[entity] (emp) {Employee};
-  \node[attribute] (ename) [above=of emp] {Name} edge (emp);
+  \node[attribute] (eFirst) [above=of emp] {First Name} edge (emp);
+  \node[attribute] (eMiddle) [above left=of emp] {Middle Initial} edge (emp);
+  \node[attribute] (eFamily) [below left=of emp] {Family Name} edge (emp);
   \node[attribute] (enum) [above right=of emp] {\key{ID}} edge (emp);
 
   \node[isa] (isa) [below=1cm of emp] {ISA} edge (emp);
@@ -49,7 +52,7 @@
   \node[relationship] (work) [right=3.5cm of emp] {Work} edge (emp);
   
   \node[relationship] (con) [below right=1cm of isa] {Controls} edge (man);
-  \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge (con);
+  \node[entity] (dep) [right = 1.62cm of con] {Department} edge (work) edge [<-] (con);
   \node[attribute] (Dep_Name) [below right = 0.5cm of dep] {Name} edge (dep); 
   
   \node[relationship] (rel_left) [below = 0.5cm of man] {Negotiates} edge (man);
@@ -58,7 +61,7 @@
   
   \node[weak entity] (client) [below = 4cm of sales] {Client};
   \node[relationship] (buys) [below = 1cm of sales] {Buys} edge (sales) edge (client);
-  \node[relationship] (signs) [below = 4cm of contract] {Signs} edge (contract) edge (client);
+  \node[relationship] (signs) [below = 4cm of contract] {Signs} edge [->] (contract) edge (client);
   
 
 \end{tikzpicture}
@@ -75,6 +78,5 @@
     \item A manager can only control one department.
     \item There may be multiple contracts of the same grade.
     \item Each contract is managed by one employee.
-    \item Address consists of the Street Address, City, Province and Postal Code
 \end{enumerate}
 \end{document}

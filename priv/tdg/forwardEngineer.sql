@@ -128,9 +128,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- d1)
 INSERT INTO 'ContractType' VALUES ('On Premise');
 
-
-INSERT INTO 'Contract' VALUES ('123', 'Premium', '1', 'John', "Smith", 'GSCCorporation@gmail.com', 'Montreal', 'Quebec', 'Q1Q 1Q1', '90000', '10000', NOW(), 'On Premise', "GSC Corporation");
-
+INSERT INTO Contract VALUES ('123', 'Premium', '1', 'John', 'S', 'Smith',  'GSCCorporation@gmail.com', '514-222-2222', '8080 Saint-Denis, Montreal', 'Quebec', 'Q1Q 1Q1', '90000.10', '10000.12', NOW(), 'On-premises', "GSC Corporation");
 -- d2)
 
 -- d3)

@@ -1,0 +1,23 @@
+employees (some are sales associates) (others are managers)
+clients have accounts
+maintain valid cities and provinces
+premium, diamond, silver, gold contracts
+"platform"
+sales associates can choose managers and put them on contracts
+employees can choose which categories of contracts and platform
+managers allocate employees to contracts
+contracts can expire
+managers retrieve number of hours employee works
+managers can remove employees
+clients and satisfaction in db
+clients can look up satisfaction report
+admin has more priviliges
+3-4 deliverables
+need to mark delivered date
+3 kinds of insurance plans
+some way to keep track of work hours
+username / password
+at least 5 line of business
+at least 10 contracts
+every table has 20 entries
+clients have multiple contracts

@@ -1,0 +1,90 @@
+\documentclass[12pt, letterpaper]{article} 
+
+\usepackage{mathpazo}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{minted}
+\usepackage{fancyhdr}
+
+\begin{document} 
+
+\pagestyle{fancy}
+\lhead{COMP353\\Report}
+\rhead{~\\ycc353}
+\inputminted{sql}{CMS-SCHEMA-DRAFT-1.sql}
+\textbf{Account}\\ 
+Primary Key: (ID)\\ 
+Candidate Keys: (ID), (email), (first, middle, last)\\ 
+Dependencies: (ID) $\rightarrow$ (first, middle, last) $\rightarrow$ email, phone
+
+\textbf{Account Login}\\ 
+Primary Key: (ID)\\ 
+Candidate Keys: (ID), (username)\\
+Dependencies: (ID) $\rightarrow$ (username) $\rightarrow$ password
+
+\textbf{Role}\\ 
+Primary Key: (name)\\ 
+Candidate Keys: (name)\\
+Dependencies: (name)
+
+\textbf{Employee}\\ 
+Primary Key: (ID)\\ 
+Candidate Keys: (ID)\\
+Dependencies: ID $\rightarrow$ Insurance Plan, Role, Weekly Hours
+
+\textbf{Contract Type}\\ 
+Primary Key: (name)\\ 
+Candidate Keys: (name)\\
+Dependencies: (name)
+
+\textbf{Line of Business}\\ 
+Primary Key: (name)\\ 
+Candidate Keys: (name)\\
+Dependencies: (name)
+
+\textbf{Platform}\\ 
+Primary Key: (name)\\ 
+Candidate Keys: (name)\\
+Dependencies: (name)
+
+\textbf{City}\\ 
+Primary Key: (city, province)\\ 
+Candidate Keys: (city, province)\\
+Dependencies: (city, province)
+
+\textbf{Client}\\
+Primary Key: (ID)\\
+Candidate Keys: (ID), (Client Representative, Company Name)\\
+Dependencies: (ID) $\rightarrow$ (Client Representative, Company Name) $\rightarrow$ address $\rightarrow$ City, Province, Postal Code
+
+\textbf{Contract}\\
+Primary Key: (ID)\\
+Candidate Keys: (ID), (Client, Contract Type)\\
+Dependencies: (ID) $\rightarrow$ (Client, Contract Type) $\rightarrow$ ID, Client, Contract Type, Line of Business, Platform, Manager, Start Date, End Date, Satisfaction Score
+
+\textbf{Work Choice}\\
+Primary Key: (Employee, Contract Type, Platform)\\
+Candidate Keys: (Employee, Contract Type, Platform)\\
+Dependencies: (Employee, Contract Type, Platform)
+
+\textbf{Sale Record}\\
+Primary Key: (Contract)\\
+Candidate Keys: (Contract)\\
+Dependencies: (Contract) $\rightarrow$ Sales Associate, Initial Value, Annual Value
+
+\textbf{Deliverable Standard}\\
+Primary Key: (Contract Type, Deliverable)\\
+Candidate Keys: (Contract Type, Deliverable)\\
+Dependencies: (Contract, Deliverable) $\rightarrow$ Due After
+
+\textbf{Contract Assignment}\\
+Primary Key: (Contract, Employee)\\
+Candidate Keys: (Contract, Employee)\\
+Dependencies: (Contract, Employee) $\rightarrow$ Hours Worked
+
+\textbf{Deliverable Log}\\
+Primary Key: (Contract Type, Deliverable)\\
+Candidate Keys: (Contract Type, Deliverable)\\
+Dependencies: (Contract, Deliverable) $\rightarrow$ Completed Date
+\end{document}

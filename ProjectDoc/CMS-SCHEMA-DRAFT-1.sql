@@ -19,7 +19,8 @@ CREATE TABLE account_login (
   id INTEGER NOT NULL,
   username TEXT NOT NULL,
   password TEXT NOT NULL,
-  CONSTRAINT login_id FOREIGN KEY (id) REFERENCES account (id)
+  CONSTRAINT login_id FOREIGN KEY (id) 
+    REFERENCES account (id)
 );
 
 /** Sales associate, Manager, employee, Admin **/
@@ -39,9 +40,12 @@ CREATE TABLE employee (
   insurance_plan VARCHAR(32) NOT NULL,
   role VARCHAR(32) NOT NULL,
   weekly_hours INTEGER NOT NULL,
-  CONSTRAINT employee_account FOREIGN KEY (id) REFERENCES account (id),
-  CONSTRAINT employee_insurance FOREIGN KEY (insurance_plan) REFERENCES insurance_plan (name),
-  CONSTRAINT employee_role FOREIGN KEY (role) REFERENCES role (name)
+  CONSTRAINT employee_account FOREIGN KEY (id) 
+    REFERENCES account (id),
+  CONSTRAINT employee_insurance FOREIGN KEY (insurance_plan) 
+    REFERENCES insurance_plan (name),
+  CONSTRAINT employee_role FOREIGN KEY (role) 
+    REFERENCES role (name)
 );
 
 /* Gold, Premium, Silver, ... */
@@ -61,7 +65,8 @@ CREATE TABLE platform (
 
 CREATE TABLE city (
   city VARCHAR(16) NOT NULL,
-  province ENUM('BC','AB','SK','MB','ON','QC','NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
+  province ENUM('BC','AB','SK','MB','ON','QC',
+  	'NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
   PRIMARY KEY (city, province)
 );
 
@@ -73,10 +78,13 @@ CREATE TABLE client (
   company_name TEXT NOT NULL,
   address TEXT NOT NULL,
   city VARCHAR(16) NOT NULL,
-  province ENUM('BC','AB','SK','MB','ON','QC','NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
+  province ENUM('BC','AB','SK','MB','ON','QC',
+  	'NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
   postal_code CHAR(7) NOT NULL,
-  CONSTRAINT FOREIGN KEY (client_rep) REFERENCES account (id),
-  CONSTRAINT FOREIGN KEY (city, province) REFERENCES city (city, province)
+  CONSTRAINT FOREIGN KEY (client_rep)
+    REFERENCES account (id),
+  CONSTRAINT FOREIGN KEY (city, province)
+    REFERENCES city (city, province)
 );
 
 -- CONTRACTS --
@@ -90,11 +98,16 @@ CREATE TABLE contract (
   start_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   end_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   satisfaction_score INTEGER NOT NULL,
-  CONSTRAINT contract_client FOREIGN KEY (client) REFERENCES client (id),
-  CONSTRAINT contract_lob  FOREIGN KEY (line_of_business) REFERENCES line_of_business (name),
-  CONSTRAINT contract_ctype FOREIGN KEY (contract_type) REFERENCES contract_type (name),
-  CONSTRAINT contract_platform FOREIGN KEY (platform) REFERENCES platform (name),
-  CONSTRAINT contract_manager FOREIGN KEY (manager) REFERENCES employee (id)
+  CONSTRAINT contract_client FOREIGN KEY (client)
+    REFERENCES client (id),
+  CONSTRAINT contract_lob  FOREIGN KEY (line_of_business) 
+    REFERENCES line_of_business (name),
+  CONSTRAINT contract_ctype FOREIGN KEY (contract_type) 
+    REFERENCES contract_type (name),
+  CONSTRAINT contract_platform FOREIGN KEY (platform)
+    REFERENCES platform (name),
+  CONSTRAINT contract_manager FOREIGN KEY (manager) 
+    REFERENCES employee (id)
 );
 
 /** Indicates what employees want to work on (why does this company let them choose) **/
@@ -103,9 +116,12 @@ CREATE TABLE work_choice (
   contract_type VARCHAR(32) NOT NULL,
   platform VARCHAR(32) NOT NULL,
   PRIMARY KEY (employee, contract_type, platform),
-  CONSTRAINT choice_employee FOREIGN KEY (employee) REFERENCES employee (id),
-  CONSTRAINT choice_contract FOREIGN KEY (contract_type) REFERENCES contract_type (name),
-  CONSTRAINT choice_platform FOREIGN KEY (platform) REFERENCES platform (name)
+  CONSTRAINT choice_employee FOREIGN KEY (employee) 
+    REFERENCES employee (id),
+  CONSTRAINT choice_contract FOREIGN KEY (contract_type) 
+    REFERENCES contract_type (name),
+  CONSTRAINT choice_platform FOREIGN KEY (platform)  
+    REFERENCES platform (name)
 );
 
 CREATE TABLE sale_record (
@@ -113,8 +129,10 @@ CREATE TABLE sale_record (
   sales_associate INTEGER NOT NULL,
   initial_value DECIMAL(8,2) NOT NULL,
   annual_value DECIMAL(8,2) NOT NULL,
-  CONSTRAINT sale_contract FOREIGN KEY (contract) REFERENCES contract (id),
-  CONSTRAINT sale_associate FOREIGN KEY (sales_associate) REFERENCES employee (id)
+  CONSTRAINT sale_contract FOREIGN KEY (contract)
+    REFERENCES contract (id),
+  CONSTRAINT sale_associate FOREIGN KEY (sales_associate) 
+    REFERENCES employee (id)
 );
 
 CREATE TABLE deliverable_standard (
@@ -122,7 +140,8 @@ CREATE TABLE deliverable_standard (
   deliverable VARCHAR(32) NOT NULL,
   due_after INTEGER NOT NULL,
   PRIMARY KEY (contract_type, deliverable),
-  CONSTRAINT deliverable_contract_type FOREIGN KEY (contract_type) REFERENCES contract_type (name)
+  CONSTRAINT deliverable_contract_type FOREIGN KEY (contract_type)
+    REFERENCES contract_type (name)
 );
 /** Used by employees to track hours **/
 CREATE TABLE contract_assignment (
@@ -140,7 +159,8 @@ CREATE TABLE deliverable_log (
   deliverable VARCHAR(32) NOT NULL,
   completed_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (contract, deliverable) -- ,
-  -- CONSTRAINT FOREIGN KEY (deliverable) REFERENCES deliverable_standard (deliverable)
+  -- CONSTRAINT FOREIGN KEY (deliverable) 
+  --  REFERENCES deliverable_standard (deliverable)
 );
 
 SET FOREIGN_KEY_CHECKS=1;

@@ -34,16 +34,27 @@ CREATE TABLE insurance_plan (
   pct_reimbursed INTEGER NOT NULL
 );
 
+CREATE TABLE city (
+  city VARCHAR(16) NOT NULL,
+  province ENUM('BC','AB','SK','MB','ON','QC',
+    'NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
+  PRIMARY KEY (city, province)
+);
+
 -- EMPLOYEES --
 CREATE TABLE employee (
   id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   insurance_plan VARCHAR(32) NOT NULL,
   role VARCHAR(32) NOT NULL,
   weekly_hours INTEGER NOT NULL,
+  jurisdiction ENUM('BC','AB','SK','MB','ON','QC',
+    'NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
   CONSTRAINT employee_account FOREIGN KEY (id) 
     REFERENCES account (id),
   CONSTRAINT employee_insurance FOREIGN KEY (insurance_plan) 
     REFERENCES insurance_plan (name),
+  -- CONSTRAINT employee_juris FOREIGN KEY (jurisdiction) 
+  --   REFERENCES city (province),
   CONSTRAINT employee_role FOREIGN KEY (role) 
     REFERENCES role (name)
 );
@@ -61,13 +72,6 @@ CREATE TABLE line_of_business (
 /* Think he means Cloud, On-Prem */
 CREATE TABLE platform (
   name VARCHAR(32) PRIMARY KEY NOT NULL
-);
-
-CREATE TABLE city (
-  city VARCHAR(16) NOT NULL,
-  province ENUM('BC','AB','SK','MB','ON','QC',
-  	'NB','NS','PE','DD','NL','YT','NT','NU') NOT NULL,
-  PRIMARY KEY (city, province)
 );
 
 -- CLIENTS --

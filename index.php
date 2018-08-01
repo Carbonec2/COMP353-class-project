@@ -28,7 +28,7 @@ if (!isset($wantedPage)) {
         <meta charset="UTF-8">
         <title></title>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/everyPage.css" />
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

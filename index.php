@@ -1,15 +1,19 @@
 <?php
 session_start();
-$pages = scandir('pages');
-$wantedPage; //Variable that will contain the wanted page, if set. 
+
 include_once('backendIncludeScript.php');
+
+$pages = scandir(dirname(__FILE__) . '/pages');
+$wantedPage; //Variable that will contain the wanted page, if set.
 //For each file found in the folder, we look if we have a php file. If yes, we look to know if it is the file wanted
 foreach ($pages AS $page) {
     if (preg_match('/^.*\.(php)$/i', $page)) {
-        if ($_GET['page'] == explode('.', $page)[0]) {
-            //If we have a matching file, we stop the loop here
-            $wantedPage = explode('.', $page)[0];
-            break;
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == explode('.', $page)[0]) {
+                //If we have a matching file, we stop the loop here
+                $wantedPage = explode('.', $page)[0];
+                break;
+            }
         }
     }
 }
@@ -26,8 +30,8 @@ if (!isset($wantedPage)) {
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
         <link rel="stylesheet" href="css/style.css" />
         <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
         <script src="js/head.js"></script>
         <?php

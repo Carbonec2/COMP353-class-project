@@ -6,18 +6,17 @@ switch (strtolower($_POST['method'])) {
     case 'checkAuthentification':
         json_encode(AccountTDG::checkAuthentification(getOV()));
         break;
-    
-    
-    //Not used yet
     case 'insert':
-        AccountTDG::insert(getOV());
+        json_encode(AccountTDG::insert(getOV()));
         break;
     case 'update':
-        AccountTDG::update(getOV());
+        json_encode(AccountTDG::update(getOV()));
         break;
     case 'save':
-        AccountTDG::save(getOV());
+        json_encode(AccountTDG::save(getOV()));
         break;
+    
+    //Not used yet
     case 'getall':
         AccountTDG::getAll(getFilters());
         break;

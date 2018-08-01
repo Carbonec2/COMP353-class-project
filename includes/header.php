@@ -1,3 +1,2 @@
-<?php
-
-//At the bottom of every <body></body> tag of every page
+<a href="index.php?page=login">Login</a>
+<a href="index.php?page=register">Register</a>

@@ -89,7 +89,7 @@ class ClientTDG implements TDG {
 
         $sql->bindValue(':companyName', $client->companyName);
         $sql->bindValue(':address', $client->address);
-        $sql->bindValue(':city', $client->city);
+        $sql->bindValue(':city', (isset($client->city) && !empty($client->city) ? $client->city : NULL));
         $sql->bindValue(':postalCode', $client->postalCode);
         $sql->bindValue(':province', (isset($client->province) && !empty($client->province) ? $client->province : NULL));
         $sql->bindValue(':Account_id', $accountId);

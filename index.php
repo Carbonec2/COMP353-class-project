@@ -56,7 +56,9 @@ if (!isset($wantedPage)) {
     <body>
         <?php
         include_once('includes/header.php');
+        echo '<div id="mainPanel" class="container-fluid text-center mainPanel">';
         include_once('pages/' . $wantedPage . '.php');
+        echo '</div>';
         include_once('includes/footer.php');
         ?>
     </body>

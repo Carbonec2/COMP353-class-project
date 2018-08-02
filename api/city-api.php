@@ -3,25 +3,25 @@
 include_once(dirname(__FILE__) . '/../backendIncludeScript.php');
 
 switch (($_POST['method'])) {
-    case 'checkAuthentification':
-        echo json_encode(AccountTDG::checkAuthentification(getOV()));
+    case 'getProvinceHashTable':
+        echo json_encode(CityTDG::getProvinceHashTable());
         break;
     case 'insert':
-        echo json_encode(AccountTDG::insert(getOV()));
+        echo json_encode(CityTDG::insert(getOV()));
         break;
     case 'update':
-        echo json_encode(AccountTDG::update(getOV()));
+        echo json_encode(CityTDG::update(getOV()));
         break;
     case 'save':
-        echo json_encode(AccountTDG::save(getOV()));
+        echo json_encode(CityTDG::save(getOV()));
         break;
     
     //Not used yet
     case 'getall':
-        echo json_encode(AccountTDG::getAll(getFilters()));
+        echo json_encode(CityTDG::getAll(getFilters()));
         break;
     case 'get':
-        echo json_encode(AccountTDG::get(getId()));
+        echo json_encode(CityTDG::get(getId()));
         break;
 }
 

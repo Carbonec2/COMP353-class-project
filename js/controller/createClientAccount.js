@@ -14,7 +14,7 @@ class CreateClientAccount {
         this.data = {};
 
         this.bind();
-
+        this.selectFill();
 
     }
 
@@ -29,6 +29,20 @@ class CreateClientAccount {
 
 
 
+    }
+    
+    selectFill(){
+        
+        cityTDG.getProvinceHashTable((result)=>{
+           
+            //Fill choices
+            
+            
+            
+        });
+
+        
+        
     }
 
     getPageData() {

@@ -14,16 +14,19 @@ class AccountTDG implements TDG {
         
     }
 
-    public static function insert($valueObject) {
+    public static function insert($valueObject, &$conn = NULL) {
 
-        $conn = pdo_connect();
+        //If we already have a conn, we don't create a new one
+        if ($conn == NULL) {
+            $conn = pdo_connect();
+        }
 
         $sql = $conn->prepare('INSERT INTO Account (username, password, Employee_id, email, phone, firstName, middleInitial, lastName) 
                 VALUES (:username, :password, :Employee_id, :email, :phone, :firstName, :middleInitial, :lastName) ');
 
         $sql->bindValue(':username', $valueObject->username);
         $sql->bindValue(':password', $valueObject->password);
-        $sql->bindValue(':Employee_id', $valueObject->Employee_id);
+        $sql->bindValue(':Employee_id', (isset($valueObject->Employee_id) && !empty($valueObject->Employee_id) ? $valueObject->Employee_id : NULL));
         $sql->bindValue(':email', $valueObject->email);
         $sql->bindValue(':phone', $valueObject->phone);
         $sql->bindValue(':firstName', $valueObject->firstName);
@@ -45,7 +48,7 @@ class AccountTDG implements TDG {
     }
 
     public static function update($valueObject) {
-        
+
         $conn = pdo_connect();
 
         $sql = $conn->prepare('UPDATE Account 
@@ -73,7 +76,6 @@ class AccountTDG implements TDG {
         $sql->execute();
 
         return $valueObject->id; //Updated ID
-        
     }
 
     public static function checkAuthentification($identifiers) {

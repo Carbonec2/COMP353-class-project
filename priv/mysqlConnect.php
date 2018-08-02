@@ -6,7 +6,7 @@ function pdo_connect(){
 	$user = 'root';
 	$pass = '';
 	
-	$dbh = new PDO('mysql:host=localhost;dbname=yc353_1', $user, $pass);
+	$dbh = new PDO('mysql:host=localhost;dbname=ycc353_1', $user, $pass);
 	
 	return $dbh;
 }

@@ -33,7 +33,19 @@ if (!isset($wantedPage)) {
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+        <?php
+        //Models, to access every table
+        $tdgPages = scandir('js/tdg');
+        //For each DAO file found in the folder, we include it
+        foreach ($tdgPages AS $page) {
+            if (preg_match('#-tdg.js$#', $page)) {
+                echo '<script src="js/tdg/' . $page . '"></script>';
+            }
+        }
+        ?>
         <script src="js/head.js"></script>
+        <script src="js/lib/handsontable-master/dist/handsontable.full.min.js"></script>
+        <link rel="stylesheet" href="js/lib/handsontable-master/dist/handsontable.min.css" />
         <?php
         include_once('includes/head.php');
         //JS and CSS files, specifically for the selected page
@@ -42,14 +54,6 @@ if (!isset($wantedPage)) {
         }
         if (file_exists('css/' . $wantedPage . '.css')) {
             echo '<link rel="stylesheet" media="screen" href="css/' . $wantedPage . '.css" />';
-        }
-        //Models, to access every table
-        $pages = scandir('js/tdg');
-        //For each DAO file found in the folder, we include it
-        foreach ($pages AS $page) {
-            if (preg_match('#-tdg.js$#', $page)) {
-                echo '<script src="js/tdg/' . $page . '"></script>';
-            }
         }
         ?>
     </head>

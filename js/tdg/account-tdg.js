@@ -8,10 +8,12 @@ class AccountTDG {
         $.ajax({
             method: "POST",
             url: "api/account-api.php",
-            data: {method: "checkAuthentification", data: JSON.encode(identifiers)}
+            data: {method: "checkAuthentification", OV: JSON.stringify(identifiers)}
         }).done(function (result) {
             
-            result = JSON.decode(result);
+            console.log(result);
+            
+            result = JSON.parse(result);
             
             console.log(result);
 

@@ -4,24 +4,24 @@ include_once(dirname(__FILE__) . '/../backendIncludeScript.php');
 
 switch (strtolower($_POST['method'])) {
     case 'checkAuthentification':
-        json_encode(AccountTDG::checkAuthentification(getOV()));
+        echo json_encode(AccountTDG::checkAuthentification(getOV()));
         break;
     case 'insert':
-        json_encode(AccountTDG::insert(getOV()));
+        echo json_encode(AccountTDG::insert(getOV()));
         break;
     case 'update':
-        json_encode(AccountTDG::update(getOV()));
+        echo json_encode(AccountTDG::update(getOV()));
         break;
     case 'save':
-        json_encode(AccountTDG::save(getOV()));
+        echo json_encode(AccountTDG::save(getOV()));
         break;
     
     //Not used yet
     case 'getall':
-        AccountTDG::getAll(getFilters());
+        echo json_encode(AccountTDG::getAll(getFilters()));
         break;
     case 'get':
-        AccountTDG::get(getId());
+        echo json_encode(AccountTDG::get(getId()));
         break;
 }
 

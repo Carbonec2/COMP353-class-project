@@ -9,13 +9,8 @@ class CityTDG {
             method: "POST",
             url: "api/city-api.php",
             data: {method: "getProvinceHashTable"}
-        }).done(function (result) {
-            
-            console.log(result);
-            
+        }).done(function (result) {            
             result = JSON.parse(result);
-            
-            console.log(result);
 
             if (typeof (callbackMethod) !== "undefined") {
                 callbackMethod(result);

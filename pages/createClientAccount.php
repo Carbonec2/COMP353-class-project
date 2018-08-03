@@ -5,14 +5,22 @@
     <label for="address">Address</label>
     <input type="text" name="address" id="address" placeholder="Address"/>
     <br/>
-    <label for="city">City</label>
-    <input type="text" name="city" id="city" placeholder="City"/>
-    <br/>
     <label for="postalCode">Postal Code</label>
     <input type="text" name="postalCode" id="postalCode" placeholder="Postal Code"/>
-    <br/>
+    <br/>    
     <label for="province">Province</label>
-    <input type="text" name="province" id="province" placeholder="Province"/>
+    
+    <select name="province" id="province" placeholder="Province">
+        
+    </select>
+    
+    <!--<input type="text" name="province" id="province" placeholder="Province"/>-->
+    <br/>
+    <label for="city">City</label>
+    <select name="city" id="city" placeholder="City">
+        
+    </select>
+    <!--<input type="text" name="city" id="city" placeholder="City"/>-->
     <br/>
     
     <!--For the account part-->

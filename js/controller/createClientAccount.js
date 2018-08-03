@@ -15,6 +15,8 @@ class CreateClientAccount {
 
         this.bind();
         this.selectFill();
+        
+        $("#city").attr('disabled',true);//Enabled only when we select a province, see selectFill member method
 
     }
 
@@ -30,23 +32,38 @@ class CreateClientAccount {
 
 
     }
-    
-    selectFill(){
-        
-        cityTDG.getProvinceHashTable((result)=>{
-           
-            //Fill choices
-            
-            
-            
-        });
 
-        
-        
+    selectFill() {
+
+        cityTDG.getProvinceHashTable((result) => {
+
+            //Fill choices
+            let provinces = Object.keys(result);
+
+            provinces.forEach((entry)=>{
+                $("#province").append($("<option />").val(entry).text(entry));
+            });
+            
+            $("#province").change(()=>{
+                $("#city").empty();
+                
+                //We append the set of cities from the selected province
+                let cities = result[$("#province").val()];
+                
+                cities.forEach((entry)=>{
+                    $("#city").append($("<option />").val(entry).text(entry));
+                });
+                
+                $("#city").attr('disabled',false);
+            });
+            
+            //We trigger it because there is a default value set above
+            $("#province").trigger('change');
+        });
     }
 
     getPageData() {
-        
+
         let resultObject = {};
 
         let formAttributes = $("#clientAccountForm input[id]")         // find spans with ID attribute
@@ -55,22 +72,22 @@ class CreateClientAccount {
                 }) // convert to set of IDs
                 .get(); // convert to instance of Array (optional)
 
-                //We take every attribute and set the corresponding value of the object member
-                formAttributes.forEach((id)=>
-                {
-                    resultObject[id] = $('#'+id).val();
-                });
+        //We take every attribute and set the corresponding value of the object member
+        formAttributes.forEach((id) =>
+        {
+            resultObject[id] = $('#' + id).val();
+        });
 
         return resultObject;
     }
 
     formSubmit() {
         let data = this.getPageData();
-        
+
         console.log(data);
-        
-        
-        
+
+
+
         clientTDG.saveClientAndAccount(data, (result) => {
             if (typeof (result) !== "undefined" && result !== false && typeof (result.id) !== "undefined" && parseInt(result.id) !== 0) {
                 console.log("Authentication successful");

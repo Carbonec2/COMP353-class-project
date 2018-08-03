@@ -1,0 +1,848 @@
+%YAML 1.1
+---
+# CMS_FINAL.account
+-
+  id: 1
+  first_name: "Jim"
+  middle_initial: "A"
+  last_name: "Macdonald"
+  email: "something@something.com"
+  phone: "111 111 1111"
+-
+  id: 2
+  first_name: "Sam"
+  middle_initial: "J"
+  last_name: "Harpeur"
+  email: "con@con.com"
+  phone: "222 222 2222"
+-
+  id: 3
+  first_name: "Sophie"
+  middle_initial: "A"
+  last_name: "Claus"
+  email: "christmas@northpole.com"
+  phone: "333 333 3333"
+-
+  id: 4
+  first_name: "Dave"
+  middle_initial: "J"
+  last_name: "Trump"
+  email: "fake@news.com"
+  phone: "444 444 4444"
+-
+  id: 5
+  first_name: "Adam"
+  middle_initial: "B"
+  last_name: "Jackass"
+  email: "dublin@preclearance.com"
+  phone: "555 555 5555"
+-
+  id: 6
+  first_name: "Bob"
+  middle_initial: "B"
+  last_name: "Gratton"
+  email: "bob@bob.com"
+  phone: "666 666 6666"
+-
+  id: 7
+  first_name: "Octave"
+  middle_initial: "B"
+  last_name: "Cremazie"
+  email: "metro@mtl.com"
+  phone: "777 777 7777"
+-
+  id: 8
+  first_name: "Jean"
+  middle_initial: "V"
+  last_name: "Jean"
+  email: "miserable@jail.com"
+  phone: "888 888 8888"
+-
+  id: 9
+  first_name: "Mark"
+  middle_initial: "T"
+  last_name: "Putin"
+  email: "russia@us.com"
+  phone: "999 999 9999"
+-
+  id: 10
+  first_name: "Done"
+  middle_initial: "A"
+  last_name: "Not"
+  email: "work@study.com"
+  phone: "666 666 6666"
+-
+  id: 11
+  first_name: "Sean"
+  middle_initial: "B"
+  last_name: "MacDonald"
+  email: "something@something2.com"
+  phone: "111 111 1111"
+-
+  id: 12
+  first_name: "Smith"
+  middle_initial: "D"
+  last_name: "Trudeau"
+  email: "con@progressive.com"
+  phone: "222 222 2222"
+-
+  id: 13
+  first_name: "Sen"
+  middle_initial: "A"
+  last_name: "Poutine"
+  email: "poutine@quebec.com"
+  phone: "333 333 3333"
+-
+  id: 14
+  first_name: "Don"
+  middle_initial: "J"
+  last_name: "Trump"
+  email: "fakenews@everything.com"
+  phone: "444 444 4444"
+-
+  id: 15
+  first_name: "Abe"
+  middle_initial: "B"
+  last_name: "Lincoln"
+  email: "dublin@preclearance.com"
+  phone: "555 555 5555"
+-
+  id: 16
+  first_name: "Sophie"
+  middle_initial: "B"
+  last_name: "Tremblay"
+  email: "tby@bob.com"
+  phone: "666 666 6666"
+-
+  id: 17
+  first_name: "Octave"
+  middle_initial: "B"
+  last_name: "Cremazie"
+  email: "metro@mtl.com"
+  phone: "777 777 7777"
+-
+  id: 18
+  first_name: "Jean"
+  middle_initial: "V"
+  last_name: "Jean"
+  email: "miserable@jail.com"
+  phone: "888 888 8888"
+-
+  id: 19
+  first_name: "Meriem"
+  middle_initial: "T"
+  last_name: "Peter"
+  email: "russia@us.com"
+  phone: "999 999 9999"
+-
+  id: 20
+  first_name: "Done"
+  middle_initial: "A"
+  last_name: "Not"
+  email: "work@study.com"
+  phone: "666 666 6666"
+-
+  id: 21
+  first_name: "Jim"
+  middle_initial: "A"
+  last_name: "Macdonald"
+  email: "something@something.com"
+  phone: "111 111 1111"
+-
+  id: 22
+  first_name: "Sam"
+  middle_initial: "J"
+  last_name: "Harpeur"
+  email: "con@con.com"
+  phone: "222 222 2222"
+-
+  id: 23
+  first_name: "Sophie"
+  middle_initial: "A"
+  last_name: "Claus"
+  email: "christmas@northpole.com"
+  phone: "333 333 3333"
+-
+  id: 24
+  first_name: "Dave"
+  middle_initial: "J"
+  last_name: "Trump"
+  email: "fake@news.com"
+  phone: "444 444 4444"
+-
+  id: 25
+  first_name: "Adam"
+  middle_initial: "B"
+  last_name: "John"
+  email: "dublin@preclearance.com"
+  phone: "555 555 5555"
+-
+  id: 26
+  first_name: "Bob"
+  middle_initial: "B"
+  last_name: "Gratton"
+  email: "bob@bob.com"
+  phone: "666 666 6666"
+-
+  id: 27
+  first_name: "Octave"
+  middle_initial: "B"
+  last_name: "Cremazie"
+  email: "metro@mtl.com"
+  phone: "777 777 7777"
+-
+  id: 28
+  first_name: "Jean"
+  middle_initial: "V"
+  last_name: "Jean"
+  email: "miserable@jail.com"
+  phone: "888 888 8888"
+-
+  id: 29
+  first_name: "Mark"
+  middle_initial: "T"
+  last_name: "Putin"
+  email: "russia@us.com"
+  phone: "999 999 9999"
+-
+  id: 30
+  first_name: "Done"
+  middle_initial: "A"
+  last_name: "Not"
+  email: "work@study.com"
+  phone: "666 666 6666"
+-
+  id: 31
+  first_name: "Sean"
+  middle_initial: "B"
+  last_name: "MacDonald"
+  email: "something@something2.com"
+  phone: "111 111 1111"
+-
+  id: 32
+  first_name: "Smith"
+  middle_initial: "D"
+  last_name: "Trudeau"
+  email: "con@progressive.com"
+  phone: "222 222 2222"
+-
+  id: 33
+  first_name: "Sen"
+  middle_initial: "A"
+  last_name: "Poutine"
+  email: "poutine@quebec.com"
+  phone: "333 333 3333"
+-
+  id: 34
+  first_name: "Don"
+  middle_initial: "J"
+  last_name: "Trump"
+  email: "fakenews@everything.com"
+  phone: "444 444 4444"
+-
+  id: 35
+  first_name: "Abe"
+  middle_initial: "B"
+  last_name: "Lincoln"
+  email: "dublin@preclearance.com"
+  phone: "555 555 5555"
+-
+  id: 36
+  first_name: "Sophie"
+  middle_initial: "B"
+  last_name: "Tremblay"
+  email: "tby@bob.com"
+  phone: "666 666 6666"
+-
+  id: 37
+  first_name: "Octave"
+  middle_initial: "B"
+  last_name: "Cremazie"
+  email: "metro@mtl.com"
+  phone: "777 777 7777"
+-
+  id: 38
+  first_name: "Jean"
+  middle_initial: "V"
+  last_name: "Jean"
+  email: "miserable@jail.com"
+  phone: "888 888 8888"
+-
+  id: 39
+  first_name: "Meriem"
+  middle_initial: "T"
+  last_name: "Peter"
+  email: "russia@us.com"
+  phone: "999 999 9999"
+-
+  id: 40
+  first_name: "Done"
+  middle_initial: "A"
+  last_name: "Not"
+  email: "work@study.com"
+  phone: "666 666 6666"
+# CMS_FINAL.city
+-
+  city: "Becancour"
+  province: "QC"
+-
+  city: "Bonaventure"
+  province: "QC"
+-
+  city: "Calgary"
+  province: "AB"
+-
+  city: "Edmonton"
+  province: "AB"
+-
+  city: "Mississiauga"
+  province: "ON"
+-
+  city: "Montreal"
+  province: "QC"
+-
+  city: "New Market"
+  province: "ON"
+-
+  city: "Ottawa"
+  province: "ON"
+-
+  city: "St-Hubert"
+  province: "QC"
+-
+  city: "Toronto"
+  province: "ON"
+-
+  city: "Vancouver"
+  province: "BC"
+-
+  city: "Winnipeg"
+  province: "MB"
+# CMS_FINAL.client
+-
+  id: 50
+  client_rep: 21
+  company_name: "Coca-Cola"
+  address: "123 Fake St"
+  city: "Ottawa"
+  province: "ON"
+  postal_code: "E4W 2I6"
+-
+  id: 51
+  client_rep: 22
+  company_name: "Pepsi"
+  address: "1600 Maisonneuve"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 2H2"
+-
+  id: 52
+  client_rep: 23
+  company_name: "St-Hubert"
+  address: "456 St-Catherine"
+  city: "St-Hubert"
+  province: "QC"
+  postal_code: "E4W 2I6"
+-
+  id: 53
+  client_rep: 24
+  company_name: "Nike"
+  address: "1600 Maisonneuve"
+  city: "Edmonton"
+  province: "AB"
+  postal_code: "H2X 2H2"
+-
+  id: 54
+  client_rep: 25
+  company_name: "YVR"
+  address: "3211 Grant McConachie Way"
+  city: "Vancouver"
+  province: "BC"
+  postal_code: "E4W 2I6"
+-
+  id: 55
+  client_rep: 26
+  company_name: "Adidas"
+  address: "3400 McTavish"
+  city: "Toronto"
+  province: "ON"
+  postal_code: "H2X 2H2"
+-
+  id: 56
+  client_rep: 27
+  company_name: "Trump Inc"
+  address: "1600 Pennsylvania"
+  city: "Winnipeg"
+  province: "MB"
+  postal_code: "A4W 2I6"
+-
+  id: 57
+  client_rep: 28
+  company_name: "CO2"
+  address: "2456 Oxygen"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 2H2"
+-
+  id: 58
+  client_rep: 29
+  company_name: "US Preclearance"
+  address: "2000 Airport Rd NE"
+  city: "Calgary"
+  province: "AB"
+  postal_code: "T2E 6W5"
+-
+  id: 59
+  client_rep: 30
+  company_name: "WeThePeople"
+  address: "234 rue Berri"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 2H2"
+-
+  id: 60
+  client_rep: 31
+  company_name: "C++ Inc"
+  address: "123 Fake St"
+  city: "Ottawa"
+  province: "ON"
+  postal_code: "E4W 2I6"
+-
+  id: 61
+  client_rep: 32
+  company_name: "RailVision"
+  address: "4224 POWDERHORN CRES."
+  city: "Mississiauga"
+  province: "ON"
+  postal_code: "L5L 3B9"
+-
+  id: 62
+  client_rep: 33
+  company_name: "Go Transit"
+  address: "1600 Maisonneuve"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 2H2"
+-
+  id: 63
+  client_rep: 34
+  company_name: "AMT"
+  address: "3628 Avenue de Port-Royal"
+  city: "Bonaventure"
+  province: "QC"
+  postal_code: "G0C 1E0"
+-
+  id: 64
+  client_rep: 35
+  company_name: "RTM"
+  address: "4143 Cote Joyeuse"
+  city: "Becancour"
+  province: "QC"
+  postal_code: "H0H 0H0"
+-
+  id: 65
+  client_rep: 36
+  company_name: "exo"
+  address: "3101 Davis Drive"
+  city: "New Market"
+  province: "ON"
+  postal_code: "L3Y 4W2"
+-
+  id: 66
+  client_rep: 37
+  company_name: "STM"
+  address: "12789 Adelaide St"
+  city: "Toronto"
+  province: "ON"
+  postal_code: "M5H 1P6"
+-
+  id: 67
+  client_rep: 38
+  company_name: "STL"
+  address: "1600 Maisonneuve"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 2H2"
+-
+  id: 68
+  client_rep: 39
+  company_name: "RTL"
+  address: "2100 Maisonneuve O"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H3H 1K6"
+-
+  id: 69
+  client_rep: 40
+  company_name: "Air Transat"
+  address: "300 Leo Pariseau"
+  city: "Montreal"
+  province: "QC"
+  postal_code: "H2X 4C1"
+# CMS_FINAL.contract
+-
+  id: 1
+  client: 50
+  line_of_business: "Cloud Services"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 1
+  start_date: "2018-07-31 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 2
+-
+  id: 2
+  client: 51
+  line_of_business: "Development"
+  contract_type: "Gold"
+  platform: "Cloud"
+  manager: 2
+  start_date: "2017-06-28 00:00:00"
+  end_date: "2017-02-14 00:00:00"
+  satisfaction_score: 5
+-
+  id: 3
+  client: 52
+  line_of_business: "Research"
+  contract_type: "Silver"
+  platform: "On-Premises"
+  manager: 3
+  start_date: "2017-07-31 00:00:00"
+  end_date: "2018-01-01 00:00:00"
+  satisfaction_score: 7
+-
+  id: 4
+  client: 53
+  line_of_business: "Business Development"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 4
+  start_date: "2018-07-26 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 5
+  client: 54
+  line_of_business: "Facilities Management"
+  contract_type: "Diamond"
+  platform: "On-Premises"
+  manager: 5
+  start_date: "2018-07-23 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 6
+  client: 55
+  line_of_business: "Research"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 6
+  start_date: "2018-07-31 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 2
+-
+  id: 7
+  client: 56
+  line_of_business: "Facilities Management"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 7
+  start_date: "2017-06-28 00:00:00"
+  end_date: "2017-02-14 00:00:00"
+  satisfaction_score: 5
+-
+  id: 8
+  client: 57
+  line_of_business: "Cloud Services"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 8
+  start_date: "2017-07-31 00:00:00"
+  end_date: "2018-01-01 00:00:00"
+  satisfaction_score: 7
+-
+  id: 9
+  client: 58
+  line_of_business: "Research"
+  contract_type: "Diamond"
+  platform: "Cloud"
+  manager: 9
+  start_date: "2018-07-25 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 10
+  client: 59
+  line_of_business: "Business Development"
+  contract_type: "Silver"
+  platform: "On-Premises"
+  manager: 10
+  start_date: "2018-07-28 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 11
+  client: 60
+  line_of_business: "Cloud Services"
+  contract_type: "Gold"
+  platform: "Cloud"
+  manager: 11
+  start_date: "2018-07-31 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 2
+-
+  id: 12
+  client: 61
+  line_of_business: "Research"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 12
+  start_date: "2017-06-28 00:00:00"
+  end_date: "2017-02-14 00:00:00"
+  satisfaction_score: 5
+-
+  id: 13
+  client: 62
+  line_of_business: "Business Development"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 13
+  start_date: "2017-07-31 00:00:00"
+  end_date: "2018-01-01 00:00:00"
+  satisfaction_score: 7
+-
+  id: 14
+  client: 63
+  line_of_business: "Facilities Management"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 14
+  start_date: "2018-07-26 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 15
+  client: 64
+  line_of_business: "Cloud Services"
+  contract_type: "Silver"
+  platform: "On-Premises"
+  manager: 15
+  start_date: "2018-07-23 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 16
+  client: 65
+  line_of_business: "Business Development"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 16
+  start_date: "2018-07-31 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 2
+-
+  id: 17
+  client: 66
+  line_of_business: "Cloud Services"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 17
+  start_date: "2017-06-28 00:00:00"
+  end_date: "2017-02-14 00:00:00"
+  satisfaction_score: 5
+-
+  id: 18
+  client: 67
+  line_of_business: "Facilities Management"
+  contract_type: "Premium"
+  platform: "Cloud"
+  manager: 18
+  start_date: "2017-07-31 00:00:00"
+  end_date: "2018-01-01 00:00:00"
+  satisfaction_score: 7
+-
+  id: 19
+  client: 68
+  line_of_business: "Research"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 19
+  start_date: "2018-07-25 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+-
+  id: 20
+  client: 69
+  line_of_business: "Development"
+  contract_type: "Premium"
+  platform: "On-Premises"
+  manager: 20
+  start_date: "2018-07-28 00:00:00"
+  end_date: "2019-01-01 00:00:00"
+  satisfaction_score: 8
+# CMS_FINAL.contract_type
+-
+  name: "Diamond"
+-
+  name: "Gold"
+-
+  name: "Premium"
+-
+  name: "Silver"
+# CMS_FINAL.employee
+-
+  id: 1
+  insurance_plan: "Premium"
+  role: "Associate"
+  weekly_hours: 20
+  jurisdiction: "MB"
+-
+  id: 2
+  insurance_plan: "Silver"
+  role: "Manager"
+  weekly_hours: 40
+  jurisdiction: "QC"
+-
+  id: 3
+  insurance_plan: "Normal"
+  role: "Admin"
+  weekly_hours: 15
+  jurisdiction: "ON"
+-
+  id: 4
+  insurance_plan: "Normal"
+  role: "Admin"
+  weekly_hours: 10
+  jurisdiction: "AB"
+-
+  id: 5
+  insurance_plan: "Normal"
+  role: "Employee"
+  weekly_hours: 18
+  jurisdiction: "BC"
+-
+  id: 6
+  insurance_plan: "Premium"
+  role: "Employee"
+  weekly_hours: 15
+  jurisdiction: "SK"
+-
+  id: 7
+  insurance_plan: "Normal"
+  role: "Employee"
+  weekly_hours: 7
+  jurisdiction: "BC"
+-
+  id: 8
+  insurance_plan: "Silver"
+  role: "Associate"
+  weekly_hours: 3
+  jurisdiction: "AB"
+-
+  id: 9
+  insurance_plan: "Premium"
+  role: "Admin"
+  weekly_hours: 7
+  jurisdiction: "BC"
+-
+  id: 10
+  insurance_plan: "Normal"
+  role: "Employee"
+  weekly_hours: 8
+  jurisdiction: "SK"
+-
+  id: 11
+  insurance_plan: "Premium"
+  role: "Manager"
+  weekly_hours: 20
+  jurisdiction: "MB"
+-
+  id: 12
+  insurance_plan: "Silver"
+  role: "Associate"
+  weekly_hours: 40
+  jurisdiction: "QC"
+-
+  id: 13
+  insurance_plan: "Normal"
+  role: "Manager"
+  weekly_hours: 15
+  jurisdiction: "ON"
+-
+  id: 14
+  insurance_plan: "Normal"
+  role: "Employee"
+  weekly_hours: 10
+  jurisdiction: "AB"
+-
+  id: 15
+  insurance_plan: "Normal"
+  role: "Admin"
+  weekly_hours: 18
+  jurisdiction: "BC"
+-
+  id: 16
+  insurance_plan: "Premium"
+  role: "Manager"
+  weekly_hours: 15
+  jurisdiction: "SK"
+-
+  id: 17
+  insurance_plan: "Normal"
+  role: "Manager"
+  weekly_hours: 7
+  jurisdiction: "BC"
+-
+  id: 18
+  insurance_plan: "Silver"
+  role: "Admin"
+  weekly_hours: 3
+  jurisdiction: "AB"
+-
+  id: 19
+  insurance_plan: "Premium"
+  role: "Employee"
+  weekly_hours: 7
+  jurisdiction: "BC"
+-
+  id: 20
+  insurance_plan: "Normal"
+  role: "Employee"
+  weekly_hours: 8
+  jurisdiction: "SK"
+# CMS_FINAL.insurance_plan
+-
+  name: "Normal"
+  pct_reimbursed: 80
+-
+  name: "Premium"
+  pct_reimbursed: 90
+-
+  name: "Silver"
+  pct_reimbursed: 70
+# CMS_FINAL.line_of_business
+-
+  name: "Business Development"
+-
+  name: "Cloud Services"
+-
+  name: "Development"
+-
+  name: "Facilities Management"
+-
+  name: "Research"
+# CMS_FINAL.platform
+-
+  name: "Cloud"
+-
+  name: "On-Premises"
+# CMS_FINAL.role
+-
+  name: "Admin"
+-
+  name: "Associate"
+-
+  name: "Employee"
+-
+  name: "Manager"
+...

@@ -17,7 +17,17 @@ INSERT INTO role VALUES
 
 INSERT INTO city VALUES 
   ('Montreal', 'QC'),
-  ('Ottawa', 'ON');
+  ('Ottawa', 'ON'),
+  ('Toronto', 'ON'),
+  ('Winnipeg', 'MB'),
+  ('St-Hubert', 'QC'),
+  ('Calgary', 'AB'),
+  ('Edmonton', 'AB'),
+  ('Vancouver', 'BC'),
+  ('Bonaventure', 'QC'),
+  ('Becancour', 'QC'),
+  ('New Market', 'ON'),
+  ('Mississiauga', 'ON');
 
 INSERT INTO line_of_business VALUES 
   ('Cloud Services'), 
@@ -30,57 +40,8 @@ INSERT INTO line_of_business VALUES
 INSERT INTO platform VALUES ('Cloud');
 INSERT INTO platform VALUES ('On-Premises');
 
--- Department (Dev, QA, UI, )
--- Manager
--- Double CAD
--- start date default today
--- type of service
--- Contract (premium, gold, diamond, silver)
--- ER Model
--- Assumptions
--- populate tables
--- key attributes
 
 
--- Diamond Contract Type
-
--- Customer Associate
--- No Departments .... Line of Business
-
-
--- Project
-
--- PHP, MySQL
--- representative, query
--- well defined portion
--- Demo
--- sales associate
--- address
--- select province
--- list managers
--- select category
--- category = contract_type
--- managers and work choices agreement
--- expired contracts
--- hours of work
--- remove from a contract
--- categories = contract type
--- 3 kinds of insurance plans
--- populate each table with 20 records
--- 10 contracts and 5 businesses to select from
--- record line of business
--- recorded date
--- ER Diagram NOT EER
--- Relational Database Schema
--- 3NF
--- 10 to 20 tuples
--- screenshots
--- DDL
--- member contributions
-
-
-
--- NO SWEARING !!!!!!!!
 INSERT INTO account VALUES
   (1, 'Jim','A', 'Macdonald', 'something@something.com', '111 111 1111'),
   (2, 'Sam', 'J', 'Harpeur', 'con@con.com', '222 222 2222'),
@@ -148,24 +109,24 @@ INSERT INTO employee VALUES
 INSERT INTO client VALUES
   (50, 21, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
   (51, 22, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (52, 23, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  (53, 24, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (54, 25, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  (55, 26, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (56, 27, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  (57, 28, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (58, 29, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  (59, 30, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (60, 31, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  (61, 32, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (62, 33, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (63, 34, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (64, 35, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (65, 36, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (66, 37, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (67, 38, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (68, 39, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  (69, 40, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2');  
+  (52, 23, 'St-Hubert', '456 St-Catherine', 'St-Hubert', 'QC', 'E4W 2I6'),
+  (53, 24, 'Nike', '1600 Maisonneuve', 'Edmonton', 'AB', 'H2X 2H2'),
+  (54, 25, 'YVR', '3211 Grant McConachie Way', 'Vancouver', 'BC', 'E4W 2I6'),
+  (55, 26, 'Adidas', '3400 McTavish', 'Toronto', 'ON', 'H2X 2H2'),
+  (56, 27, 'Trump Inc', '1600 Pennsylvania', 'Winnipeg', 'MB', 'A4W 2I6'),
+  (57, 28, 'CO2', '2456 Oxygen', 'Montreal', 'QC', 'H2X 2H2'),
+  (58, 29, 'US Preclearance', '2000 Airport Rd NE', 'Calgary', 'AB', 'T2E 6W5'),
+  (59, 30, 'WeThePeople', '234 rue Berri', 'Montreal', 'QC', 'H2X 2H2'),
+  (60, 31, 'C++ Inc', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
+  (61, 32, 'RailVision', '4224 POWDERHORN CRES.', 'Mississiauga', 'ON', 'L5L 3B9'),
+  (62, 33, 'Go Transit', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
+  (63, 34, 'AMT', '3628 Avenue de Port-Royal', 'Bonaventure', 'QC', 'G0C 1E0'),
+  (64, 35, 'RTM', '4143 Cote Joyeuse', 'Becancour', 'QC', 'H0H 0H0'),
+  (65, 36, 'exo', '3101 Davis Drive', 'New Market', 'ON', 'L3Y 4W2'),
+  (66, 37, 'STM', '12789 Adelaide St', 'Toronto', 'ON', 'M5H 1P6'),
+  (67, 38, 'STL', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
+  (68, 39, 'RTL', '2100 Maisonneuve O', 'Montreal', 'QC', 'H3H 1K6'),
+  (69, 40, 'Air Transat', '300 Leo Pariseau', 'Montreal', 'QC', 'H2X 4C1');  
 
 
 INSERT INTO contract VALUES

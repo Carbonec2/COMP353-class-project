@@ -9,7 +9,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "store";
+    $dbname = "yc353_1";
     
     $con = new mysqli($servername, $username, $password, $dbname) or die("Failed to connect to MySQL: " . mysql_error());
 
@@ -33,35 +33,35 @@
       $middle_initial = htmlspecialchars($_REQUEST['mname']);
       $last_name = htmlspecialchars($_REQUEST['lname']);
 
-      console_log($uname);
+      $accInfo = (object)[
+        'username'=>$uname,
+        'password'=>$pass,
+        'Employee_id'=>$employee_id,
+        'email'=>$email,
+        'phone'=>$phone,
+        'firstName'=>$first_name,
+        'middleInitial'=>$middle_initial,
+        'lastName'=>$last_name
+      ];
 
-      $result1 = mysqli_query($con, "SELECT username FROM account WHERE username= '".$uname."';");
+      console_log($accInfo);
 
-      echo "<script> alert('checkpoint 2'); </script>";
+      $result1 = mysqli_query($con, "SELECT username FROM account WHERE username= '".$uname."';");      
 
       if(mysqli_num_rows($result1) > 0 ){
         echo "<script> alert('Username is taken'); </script>";
+        console_log($result1);
       }
       else{
+        echo "<script> alert('checkpoint 2'); </script>";
+
+        $accountTDG = new AccountTDG($pdo);
+        $accountTDG->insert($accInfo);
+
+        console_log($accountTDG);
+
         echo "<script> alert('checkpoint 3'); </script>";
-
-        $query = "SET FOREIGN_KEY_CHECKS=0;";
-        $data = mysqli_query($con, $query);
-
-        $query = "INSERT INTO `account` (`username`, `password`, `Employee_id`, `email`, `phone`, `firstName`, `middleInitial`, `lastName`) VALUES ('$uname', '$pass', '$employee_id', '$email', '$phone', '$first_name', '$middle_initial', '$last_name');";
-        $data = mysqli_query($con, $query);
-
-        console_log($query);
-
-        echo "<script> alert('checkpoint 4'); </script>";
         
-        if($data){
-          echo "<script> alert('Account created'); </script>";
-        }
-        else{
-          console_log(mysqli_error($con));
-          echo "<script> alert('Account creation failed'); </script>";
-        }
       }
     }
 

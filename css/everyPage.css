@@ -1,0 +1,42 @@
+#nav_bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FF5722;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+}
+
+#nav_bar li a {
+    display: block;
+    font-size: 18px;
+    color: white;
+    float: right;
+    text-align: center;
+    padding: 18px 18px;
+    text-decoration: none;
+}
+
+#nav_bar li a:hover {
+    background-color: #C83200;
+}
+
+#nav_bar_logo {
+    display: block;
+    font-size: 20px;
+    color: white;
+    float: left;
+    text-align: center;
+    padding: 16px 16px;
+    text-decoration: none;
+}
+
+.mainPanel{
+    
+    display:block;
+    margin-top:70px;
+    
+}

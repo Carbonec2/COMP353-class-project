@@ -5,39 +5,35 @@
   </head>
 
   <body>
-    <form method="post" action="index.php?page=newaccount">
+    <form>
       <table>
         <tr>
           <td>Username:</td>
-          <td><input type="text" name="un" required></td>
+          <td><input type="text" name="username" id="username" required></td>
         </tr>
         <tr>
           <td>Password:</td>
-          <td><input type="password" name="pw" required></td>
-        </tr>
-        <tr>
-          <td>Employee ID:</td>
-          <td><input type="text" name="emp_id"></td>
+          <td><input type="password" name="password" id="password" required></td>
         </tr>
         <tr>
           <td>Email:</td>
-          <td><input type="text" name="mail"></td>
+          <td><input type="text" name="email" id="email"></td>
         </tr>
         <tr>
           <td>Phone Number:</td>
-          <td><input type="text" name="pnum"></td>
+          <td><input type="text" name="phone" id="phone"></td>
         </tr>
         <tr>
           <td>First Name:</td>
-          <td><input type="text" name="fname"></td>
+          <td><input type="text" name="firstName"></td>
         </tr>
         <tr>
           <td>Middle Initial:</td>
-          <td><input type="text" name="mname"></td>
+          <td><input type="text" name="middleInitial"></td>
         </tr>
         <tr>
           <td>Last Name:</td>
-          <td><input type="text" name="lname"></td>
+          <td><input type="text" name="lastName"></td>
         </tr>
         <tr>
           <td><input type="reset" value="Reset"></td>

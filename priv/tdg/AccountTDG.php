@@ -26,7 +26,6 @@ class AccountTDG implements TDG {
 
         $sql->bindValue(':username', $valueObject->username);
         $sql->bindValue(':password', $valueObject->password);
-        //$sql->bindValue(':Employee_id', (isset($valueObject->Employee_id) && !empty($valueObject->Employee_id) ? $valueObject->Employee_id : NULL));
         $sql->bindValue(':email', $valueObject->email);
         $sql->bindValue(':phone', $valueObject->phone);
         $sql->bindValue(':firstName', $valueObject->firstName);

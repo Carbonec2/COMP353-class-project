@@ -45,6 +45,9 @@
       else{
         echo "<script> alert('checkpoint 3'); </script>";
 
+        $query = "SET FOREIGN_KEY_CHECKS=0;";
+        $data = mysqli_query($con, $query);
+
         $query = "INSERT INTO `account` (`username`, `password`, `Employee_id`, `email`, `phone`, `firstName`, `middleInitial`, `lastName`) VALUES ('$uname', '$pass', '$employee_id', '$email', '$phone', '$first_name', '$middle_initial', '$last_name');";
         $data = mysqli_query($con, $query);
 

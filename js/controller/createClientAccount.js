@@ -71,6 +71,15 @@ class CreateClientAccount {
                     return this.id;
                 }) // convert to set of IDs
                 .get(); // convert to instance of Array (optional)
+        
+        let selectAttributes = $("#clientAccountForm select[id]")         // find spans with ID attribute
+                .map(function () {
+                    return this.id;
+                }) // convert to set of IDs
+                .get();
+        
+        formAttributes = formAttributes.concat(selectAttributes);
+        
 
         //We take every attribute and set the corresponding value of the object member
         formAttributes.forEach((id) =>

@@ -42,6 +42,13 @@ if (!isset($wantedPage)) {
                 echo '<script src="js/tdg/' . $page . '"></script>';
             }
         }
+        $widgetPages = scandir('js/widget');
+        //For each DAO file found in the folder, we include it
+        foreach ($tdgPages AS $page) {
+            if (preg_match('#Widget.js$#', $page)) {
+                echo '<script src="js/widget/' . $page . '"></script>';
+            }
+        }
         ?>
         <script src="js/head.js"></script>
         <script src="js/lib/handsontable-master/dist/handsontable.full.min.js"></script>

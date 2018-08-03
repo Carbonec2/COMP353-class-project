@@ -18,7 +18,7 @@ class CityTDG implements TDG {
         
         $conn = pdo_connect();
 
-        $sql = $conn->prepare('SELECT City, Province FROM City ');
+        $sql = $conn->prepare('SELECT city, province FROM City ');
 
         $sql->execute();
 
@@ -32,7 +32,7 @@ class CityTDG implements TDG {
             }
             
             $returnResult[$entry->province][] = $entry->city;
-        }
+        }        
         return $returnResult;//Hashtable of arrays of cities sorted by province
     }
 

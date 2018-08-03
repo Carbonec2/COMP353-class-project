@@ -21,12 +21,12 @@ class AccountTDG implements TDG {
             $conn = pdo_connect();
         }
 
-        $sql = $conn->prepare('INSERT INTO Account (username, password, Employee_id, email, phone, firstName, middleInitial, lastName) 
-                VALUES (:username, :password, :Employee_id, :email, :phone, :firstName, :middleInitial, :lastName) ');
+        $sql = $conn->prepare('INSERT INTO Account (username, password, email, phone, firstName, middleInitial, lastName) 
+                VALUES (:username, :password, :email, :phone, :firstName, :middleInitial, :lastName) ');
 
         $sql->bindValue(':username', $valueObject->username);
         $sql->bindValue(':password', $valueObject->password);
-        $sql->bindValue(':Employee_id', (isset($valueObject->Employee_id) && !empty($valueObject->Employee_id) ? $valueObject->Employee_id : NULL));
+        //$sql->bindValue(':Employee_id', (isset($valueObject->Employee_id) && !empty($valueObject->Employee_id) ? $valueObject->Employee_id : NULL));
         $sql->bindValue(':email', $valueObject->email);
         $sql->bindValue(':phone', $valueObject->phone);
         $sql->bindValue(':firstName', $valueObject->firstName);
@@ -55,7 +55,6 @@ class AccountTDG implements TDG {
             SET
             username = :username,
             password = :password,
-            Employee_id = :Employee_id,
             email = :email,
             phone = :phone,
             firstName = :firstName,
@@ -66,7 +65,6 @@ class AccountTDG implements TDG {
         $sql->bindValue(':id', $valueObject->id);
         $sql->bindValue(':username', $valueObject->username);
         $sql->bindValue(':password', $valueObject->password);
-        $sql->bindValue(':Employee_id', $valueObject->Employee_id);
         $sql->bindValue(':email', $valueObject->email);
         $sql->bindValue(':phone', $valueObject->phone);
         $sql->bindValue(':firstName', $valueObject->firstName);

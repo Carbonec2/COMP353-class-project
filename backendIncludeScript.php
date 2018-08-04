@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 include_once(dirname(__FILE__).'/priv/mysqlConnect.php');
 include_once(dirname(__FILE__).'/priv/TDGInterface.php');
 $pages = scandir(dirname(__FILE__).'/priv/tdg');

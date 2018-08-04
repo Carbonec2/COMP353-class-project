@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 include_once('backendIncludeScript.php');
 
 $pages = scandir(dirname(__FILE__) . '/pages');
@@ -17,6 +15,18 @@ foreach ($pages AS $page) {
         }
     }
 }
+
+//If we want to logout, we destroy the session
+if ($wantedPage == 'logout') {
+    session_destroy();
+    session_start();
+}
+
+if ($wantedPage == 'login' && !empty($_SESSION['userId'])) {
+    $wantedPage = 'welcome';
+    $cameBackFromLogin = true;
+}
+
 if (!isset($wantedPage)) {
     $wantedPage = 'welcome';
 }
@@ -65,6 +75,9 @@ if (!isset($wantedPage)) {
         <?php
         include_once('includes/header.php');
         echo '<div id="mainPanel" class="container-fluid text-center mainPanel">';
+        if (isset($cameBackFromLogin) && $cameBackFromLogin == true) {
+            echo '<p>Welcome '.$_SESSION['username'].'!</p>';
+        }
         include_once('pages/' . $wantedPage . '.php');
         echo '</div>';
         include_once('includes/footer.php');

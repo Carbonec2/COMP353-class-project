@@ -26,7 +26,7 @@ class EmployeeTDG {
         $.ajax({
             method: "POST",
             url: "api/employee-api.php",
-            data: {method: "getEmployeeTable", OV: JSON.stringify(data)}
+            data: {method: "saveEmployeeTable", OV: JSON.stringify(data)}
         }).done(function (result) {
 
             console.log(result);

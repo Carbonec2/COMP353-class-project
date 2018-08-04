@@ -46,9 +46,9 @@ class EmployeeTDG implements TDG {
         $sql->bindValue(':accountId', $valueObject->accountId);
         $sql->bindValue(':city', $valueObject->city);
         $sql->bindValue(':province', $valueObject->province);
-        
+
         $sql->execute();
-        
+
         return $conn->lastInsertId();
     }
 
@@ -67,7 +67,7 @@ class EmployeeTDG implements TDG {
         if ($conn == NULL) {
             $conn = pdo_connect();
         }
-        
+
         $sql = $conn->prepare('UPDATE Employee SET 
             lineOfBusinessName = :lineOfBusinessName,
             insurancePlanName = :insurancePlanName,
@@ -77,7 +77,7 @@ class EmployeeTDG implements TDG {
             city = :city,
             province = :province
             WHERE id = :id');
-        
+
         $sql->bindValue(':id', $valueObject->id);
         $sql->bindValue(':lineOfBusinessName', $valueObject->lineOfBusinessName);
         $sql->bindValue(':insurancePlanName', $valueObject->insurancePlanName);
@@ -86,9 +86,9 @@ class EmployeeTDG implements TDG {
         $sql->bindValue(':accountId', $valueObject->accountId);
         $sql->bindValue(':city', $valueObject->city);
         $sql->bindValue(':province', $valueObject->province);
-        
+
         $sql->execute();
-        
+
         return $valueObject->id;
     }
 
@@ -113,7 +113,7 @@ class EmployeeTDG implements TDG {
             middleInitial,
             lastName
             FROM Employee
-            LEFT JOIN Account ON Employee.accoundId = Account.id
+            LEFT JOIN Account ON Employee.accountId = Account.id
             ORDER BY Employee.id');
 
         $sql->execute();
@@ -125,15 +125,17 @@ class EmployeeTDG implements TDG {
 
         $conn = pdo_connect();
 
-        //We save the account first, get the generated id and use it for Employee table
-        
-        $accountId = AccountTDG::save($valueObject);
-        
-        $valueObject->accountId = $accountId;
-        
-        $employeeId = EmployeeTDG::save($valueObject);
+        foreach ($valueObject AS $entry) {
+            //We save the account first, get the generated id and use it for Employee table
 
-        return $employeeId;
+            $accountId = AccountTDG::save($entry);
+
+            $entry->accountId = $accountId;
+
+            $employeeId = EmployeeTDG::save($entry);
+        }
+
+        //return $employeeId;
     }
 
 }

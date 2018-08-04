@@ -79,7 +79,13 @@ class AccountTDG implements TDG {
 
         $conn = pdo_connect();
 
-        $sql = $conn->prepare('SELECT * FROM Account WHERE username = :username AND password = :password');
+        $sql = $conn->prepare('SELECT Account.id AS id, username, password, email, phone, 
+            firstName, middleInitial, lastName, Employee.id AS employeeId, 
+            Employee.roleType 
+            FROM Account 
+            LEFT JOIN Employee ON Account.id = Employee.accountId
+            WHERE username = :username AND password = :password
+            ');
 
         $sql->bindValue(':username', $identifiers->username);
         $sql->bindValue(':password', $identifiers->password);
@@ -93,6 +99,8 @@ class AccountTDG implements TDG {
             //We log in the user
             $_SESSION['userId'] = $result->id;
             $_SESSION['username'] = $result->username;
+            $_SESSION['employeeId'] = (isset($result->employeeId)? $result->employeeId : NULL);
+            $_SESSION['roleType'] = (isset($result->roleType)? $result->roleType : NULL);
 
             $result->authenticated = true;
 

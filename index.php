@@ -16,6 +16,10 @@ foreach ($pages AS $page) {
     }
 }
 
+if (!isset($wantedPage)) {
+    $wantedPage = 'welcome';
+}
+
 //If we want to logout, we destroy the session
 if ($wantedPage == 'logout') {
     session_destroy();
@@ -27,9 +31,6 @@ if ($wantedPage == 'login' && !empty($_SESSION['userId'])) {
     $cameBackFromLogin = true;
 }
 
-if (!isset($wantedPage)) {
-    $wantedPage = 'welcome';
-}
 ?>
 
 <!DOCTYPE html>

@@ -92,6 +92,7 @@ class AccountTDG implements TDG {
 
             //We log in the user
             $_SESSION['userId'] = $result->id;
+            $_SESSION['username'] = $result->username;
 
             $result->authenticated = true;
 

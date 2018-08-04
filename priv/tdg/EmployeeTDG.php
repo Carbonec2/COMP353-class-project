@@ -126,6 +126,13 @@ class EmployeeTDG implements TDG {
         $conn = pdo_connect();
 
         foreach ($valueObject AS $entry) {
+            
+            //If it looks like it is an empty line, we skip it without saving
+            if(empty($entry->username) && empty($entry->lineOfBusinessName)){
+                continue;
+            }
+            
+            
             //We save the account first, get the generated id and use it for Employee table
 
             $accountId = AccountTDG::save($entry);

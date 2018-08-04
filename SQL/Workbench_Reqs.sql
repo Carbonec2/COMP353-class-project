@@ -21,8 +21,13 @@ WHERE `employeeId` = $id;
 -- 6 --
 SELECT * FROM `Contract`
 WHERE `Contract`.`clientId` = $id;
--- 7 NEED TO DO REPORT --
--- 8 MANAGER VS EMPLOYEE? --
+-- 7  --
+SELECT `hoursWorked`,`employeeId`
+FROM `ContractAssignment`
+WHERE `contractId` = $contractId
+-- 8 --
+DELETE FROM `ContractAssignment`
+WHERE `employeeId` = $employeeId;
 -- 9 --
 UPDATE `Contract`
 SET `Contract`.`satisfactionScore` = score

@@ -19,11 +19,12 @@ class ContractAssignment {
 
         this.handsontable = new Handsontable($('#contractAssignmentHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Employee','Contract'],
+            colHeaders: ['Employee','Contract', 'Hours Worked'],
             rowHeaders: true,
             columns: [
                 {data: 'employeeName', type: 'dropdown', source: this.fetchEmployeeList},
-                {data: 'contract', type: 'dropdown', source: this.fetchContractName}
+                {data: 'contract', type: 'dropdown', source: this.fetchContractName},
+                {data: 'hoursWorked', type: 'numeric'}
             ],
             minSpareRows: 1,
             stretchH: "all"
@@ -45,10 +46,10 @@ class ContractAssignment {
      */
     fetchData() {
         
-        workChoiceTDG.getWorkChoiceTable((workChoiceTableResult) => {
+        contractAssignmentTDG.getContractAssignmentTable((contractAssignmentTableResult) => {
 
-            console.log(workChoiceTableResult);
-            this.data = workChoiceTableResult;
+            console.log(contractAssignmentTableResult);
+            this.data = contractAssignmentTableResult;
             this.handsontable.updateSettings({
                 data: this.data
             });
@@ -59,7 +60,7 @@ class ContractAssignment {
     
     fetchEmployeeList(query, process) {
 
-        employeeTDG.getManagerHashtable((result) => {
+        employeeTDG.getEmployeeHashtable((result) => {
             this.employeeNameToId = result.nameToId;
             this.employeeIdToName = result.idToName;
 
@@ -106,7 +107,7 @@ class ContractAssignment {
         
         console.log(this.getPageData());
 
-        contractAssignmentTDG.saveWorkChoiceTable(this.getPageData(), (result) => {
+        contractAssignmentTDG.saveContractAssignmentTable(this.getPageData(), (result) => {
 
             console.log(result);
 

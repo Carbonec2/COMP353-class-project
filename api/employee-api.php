@@ -13,6 +13,10 @@ switch (($_POST['method'])) {
         echo json_encode(EmployeeTDG::getManagerHashtable());
         break;
     
+    case 'getEmployeeHashtable':
+        echo json_encode(EmployeeTDG::getEmployeeHashtable());
+        break;
+    
     case 'insert':
         echo json_encode(EmployeeTDG::insert(getOV()));
         break;

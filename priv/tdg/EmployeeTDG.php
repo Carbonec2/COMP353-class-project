@@ -161,6 +161,43 @@ class EmployeeTDG implements TDG {
 
         $sql = $conn->prepare('SELECT 
             Employee.id AS id,
+            Employee.roleType,
+            Account.firstName, 
+            Account.middleInitial, 
+            Account.lastName
+            FROM Employee
+            LEFT JOIN Account ON Employee.accountId = Account.id
+            WHERE Employee.roleType = "Manager"
+            ');
+        
+        $sql->execute();
+
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+
+        $nameToId = array();
+        $idToName = array();
+
+        foreach ($result as $entry) {
+            $nameToId[$entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName] = $entry->id;
+            $idToName[$entry->id] = $entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName;
+        }
+
+        $returnResult = new stdClass();
+
+        $returnResult->nameToId = $nameToId;
+        $returnResult->idToName = $idToName;
+
+        return $returnResult;
+    }
+    
+    public static function getEmployeeHashtable(&$conn = NULL) {
+
+        if ($conn == NULL) {
+            $conn = pdo_connect();
+        }
+
+        $sql = $conn->prepare('SELECT 
+            Employee.id AS id,
             Account.firstName, 
             Account.middleInitial, 
             Account.lastName

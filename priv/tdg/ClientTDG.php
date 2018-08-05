@@ -81,6 +81,8 @@ class ClientTDG implements TDG {
         $conn = pdo_connect();
         
         $accountId = AccountTDG::insert($client);
+        
+        //Client saving part
 
         $sql = $conn->prepare('INSERT INTO Client (companyName, address, city, 
             postalCode, province, accountId) 

@@ -4,13 +4,27 @@
     if (!empty($_SESSION['userId'])) {
         //echo 'Logged in as <strong>' . $_SESSION['user'] . '</strong>.';
         echo '<ul id="nav_bar">
-                    <li id="nav_bar_logo" style="padding: 0px;"><strong><a href="index.php?page=welcome">COMP353</a></strong></li>
-                    <li><a href="index.php?page=logout" id="logoutButton">LOG OUT</a></li>';
+                    <li id="nav_bar_logo" style="padding: 0px;"><strong><a href="index.php?page=welcome">COMP353</a></strong></li>';
+        echo '<li><a href="index.php?page=logout" id="logoutButton">LOG OUT</a></li>';
+        
         switch ($_SESSION['roleType']) {
             case 'Sales Associate':
+                echo '<li>Logged as Sales Associate</li>';
                 echo '<li><a href="index.php?page=createClientAccount" id="createClientAccount">Create a Client</a></li>';
                 break;
+            case 'Manager':
+                echo '<li><span>Logged as Manager</span></li>';
+                break;
+            case 'Admin':
+                echo '<li><span>Logged as Admin</span></li>';
+                echo '<li><a href="index.php?page=employeeList" id="employeeList">Employee List</a></li>';
+                break;
         }
+        
+        if(isset($_SESSION['clientId'])&&!empty($_SESSION['clientId'])){
+            echo '<li><span>Logged as Client</span></li>';
+        }
+        echo '<li><a href="index.php?page=contractList" id="contractList">Contract List</a></li>';
         echo '</ul>';
     } else {
         echo '<ul id="nav_bar">

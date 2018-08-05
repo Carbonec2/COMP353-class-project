@@ -61,9 +61,9 @@ class ContractTDG implements TDG {
     public static function save($valueObject, &$conn = NULL) {
 
         if (isset($valueObject->id)) {
-            return EmployeeTDG::update($valueObject, $conn);
+            return ContractTDG::update($valueObject, $conn);
         } else {
-            return EmployeeTDG::insert($valueObject, $conn);
+            return ContractTDG::insert($valueObject, $conn);
         }
     }
 

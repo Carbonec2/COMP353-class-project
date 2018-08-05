@@ -27,29 +27,25 @@ class ContractList {
             this.formSubmit();
         });
     }
-    
-    buildTable(role){
-        
-        
-        
-        
+
+    buildTable() {
         this.handsontable = new Handsontable($('#contractListHandsontable')[0], {
             data: this.data,
             colHeaders: ['Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
-                'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Satisfaction Score (0-10)'],
+                'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
             rowHeaders: true,
             columns: [
                 {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
-                {data: 'manager', type: 'dropdown', source: this.fetchManagerList},
+                {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                 {data: 'annualContractValue', type: 'numeric',
                     numericFormat: {
                         pattern: '$0,0.00',
-                        culture: 'en-US' // this is the default culture, set up for USD
+                        culture: 'en-US'
                     }},
                 {data: 'initialAmount', type: 'numeric',
                     numericFormat: {
                         pattern: '$0,0.00',
-                        culture: 'en-US' // this is the default culture, set up for USD
+                        culture: 'en-US'
                     }},
                 {data: 'serviceStartDate', type: 'date'},
                 {data: 'serviceEndDate', type: 'date'},
@@ -66,7 +62,164 @@ class ContractList {
             },
             stretchH: "all"
         });
-        
+
+    }
+
+    adjustTableRole() {
+
+
+        /*
+         switch ($_SESSION['roleType']) {
+         case 'Manager':
+         //He must see all contracts to be able to allocate employees on it 
+         //(Many to many, so a link on every contract to a contract allocation page (ContractAssignment table)
+         break;
+         case 'Sales Associate':
+         //He must see all contracts + can assign a contract manager
+         break;
+         case 'Employee':
+         //Nothing to see here
+         return;
+         break;
+         case 'Admin':
+         //Can see and update everything
+         //Can remove everything
+         break;
+         }
+         */
+
+
+
+
+
+
+
+        //Set by head.php
+        switch (globalRole) {
+            case 'Client':
+                //The client only sees its contract, and can't create other ones
+                this.handsontable.updateSettings({
+                    minSpareRows: 0, //Lock the table to a max number of rows
+                    maxRows: this.data.length, //Lock the table to a max number of rows
+                    columns: [
+                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
+                        {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
+                        {data: 'annualContractValue', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'initialAmount', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
+                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
+                    ]
+                });
+                break;
+            case 'Manager':
+                //He must see all contracts he is attached to in order to be able to allocate employees on it 
+                //(Many to many, so a link on every contract to a contract allocation page (ContractAssignment table)
+                //Link somewhere to the Employee association tool and employee hours tool?
+                this.handsontable.updateSettings({
+                    minSpareRows: 0, //Lock the table to a max number of rows
+                    maxRows: this.data.length, //Lock the table to a max number of rows
+                    columns: [
+                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
+                        {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
+                        {data: 'annualContractValue', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'initialAmount', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
+                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/, className: 'htDimmed', readOnly: true} //0 to 10 with this regex
+                    ]
+                });
+                break;
+            case 'Admin':
+                //Can see and update everything
+                //Can remove everything
+                this.handsontable.updateSettings({
+                    minSpareRows: 0, //Lock the table to a max number of rows
+                    maxRows: this.data.length, //Lock the table to a max number of rows
+                    columns: [
+                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
+                        {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
+                        {data: 'annualContractValue', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            }
+                        },
+                        {data: 'initialAmount', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            }
+                        },
+                        {data: 'serviceStartDate', type: 'date'},
+                        {data: 'serviceEndDate', type: 'date'},
+                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
+                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
+                    ]
+                });
+                break;
+            case 'Sales Associate':
+                //Can associate a contract manager
+                //Can it do something else?
+                //Can it create a contract?
+                this.handsontable.updateSettings({
+                    minSpareRows: 0, //Lock the table to a max number of rows
+                    maxRows: this.data.length, //Lock the table to a max number of rows
+                    columns: [
+                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
+                        {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
+                        {data: 'annualContractValue', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'initialAmount', type: 'numeric',
+                            numericFormat: {
+                                pattern: '$0,0.00',
+                                culture: 'en-US'
+                            },
+                            className: 'htDimmed',
+                            readOnly: true},
+                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
+                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/, className: 'htDimmed', readOnly: true} //0 to 10 with this regex
+                    ]
+                });
+                break;
+        }
     }
 
     /**
@@ -75,13 +228,16 @@ class ContractList {
      */
     fetchData() {
 
-        contractTDG.getContractTable((employeeTableResult) => {
+        contractTDG.getContractTable((contractTableResult) => {
 
-            console.log(employeeTableResult);
-            this.data = employeeTableResult;
+            console.log(contractTableResult);
+            this.data = contractTableResult;
             this.handsontable.updateSettings({
                 data: this.data
             });
+
+            this.adjustTableRole();
+
             this.handsontable.render();
         });
 
@@ -139,6 +295,14 @@ class ContractList {
     }
 
     getPageData() {
+        
+        let data = this.handsontable.getSourceData();
+        
+        for(let i = 0; i < data.length; i++){
+            
+            data[i].managerId = this.nameToId[data[i].managerName];
+            
+        }
 
         return this.handsontable.getSourceData();
     }
@@ -147,7 +311,7 @@ class ContractList {
 
         console.log(this.getPageData());
 
-        employeeTDG.saveEmployeeTable(this.getPageData(), (result) => {
+        contractTDG.saveContractTable(this.getPageData(), (result) => {
 
             console.log(result);
 

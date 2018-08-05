@@ -149,8 +149,8 @@ class EmployeeTDG implements TDG {
 
             $employeeId = EmployeeTDG::save($entry);
         }
-
-        //return $employeeId;
+        
+        return true;
     }
 
     public static function getManagerHashtable(&$conn = NULL) {

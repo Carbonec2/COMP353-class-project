@@ -80,10 +80,13 @@ class AccountTDG implements TDG {
         $conn = pdo_connect();
 
         $sql = $conn->prepare('SELECT Account.id AS id, username, password, email, phone, 
-            firstName, middleInitial, lastName, Employee.id AS employeeId, 
+            firstName, middleInitial, lastName, Employee.id AS employeeId, Employee.accountId AS employeeAccountId,
+            Client.id AS clientId, 
+            Client.accountId AS clientAccountId,
             Employee.roleType 
             FROM Account 
             LEFT JOIN Employee ON Account.id = Employee.accountId
+            LEFT JOIN Client ON Account.id = Client.accountId
             WHERE username = :username AND password = :password
             ');
 
@@ -101,6 +104,7 @@ class AccountTDG implements TDG {
             $_SESSION['username'] = $result->username;
             $_SESSION['employeeId'] = (isset($result->employeeId)? $result->employeeId : NULL);
             $_SESSION['roleType'] = (isset($result->roleType)? $result->roleType : NULL);
+            $_SESSION['clientId'] = (isset($result->clientId)? $result->clientId : NULL);
 
             $result->authenticated = true;
 

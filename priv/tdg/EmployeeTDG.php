@@ -94,6 +94,10 @@ class EmployeeTDG implements TDG {
 
     public static function getEmployeeTable() {
 
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
         $conn = pdo_connect();
 
         $sql = $conn->prepare('SELECT 
@@ -123,16 +127,20 @@ class EmployeeTDG implements TDG {
 
     public static function saveEmployeeTable($valueObject) {
 
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
         $conn = pdo_connect();
 
         foreach ($valueObject AS $entry) {
-            
+
             //If it looks like it is an empty line, we skip it without saving
-            if(empty($entry->username) && empty($entry->lineOfBusinessName)){
+            if (empty($entry->username) && empty($entry->lineOfBusinessName)) {
                 continue;
             }
-            
-            
+
+
             //We save the account first, get the generated id and use it for Employee table
 
             $accountId = AccountTDG::save($entry);
@@ -143,6 +151,41 @@ class EmployeeTDG implements TDG {
         }
 
         //return $employeeId;
+    }
+
+    public static function getManagerHashtable(&$conn = NULL) {
+
+        if ($conn == NULL) {
+            $conn = pdo_connect();
+        }
+
+        $sql = $conn->prepare('SELECT 
+            Employee.id AS id,
+            Account.firstName, 
+            Account.middleInitial, 
+            Account.lastName
+            FROM Employee
+            LEFT JOIN Account ON Employee.accountId = Account.id
+            ');
+        
+        $sql->execute();
+
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+
+        $nameToId = array();
+        $idToName = array();
+
+        foreach ($result as $entry) {
+            $nameToId[$entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName] = $entry->id;
+            $idToName[$entry->id] = $entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName;
+        }
+
+        $returnResult = new stdClass();
+
+        $returnResult->nameToId = $nameToId;
+        $returnResult->idToName = $idToName;
+
+        return $returnResult;
     }
 
 }

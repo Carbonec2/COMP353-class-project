@@ -2,8 +2,6 @@ class RoleTypeTDG {
 
     getAllNames(callbackMethod) {
 
-        //AJAX request to validate if we can authenticate the user
-
         $.ajax({
             method: "POST",
             url: "api/role-type-api.php",

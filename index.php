@@ -31,6 +31,11 @@ if ($wantedPage == 'login' && !empty($_SESSION['userId'])) {
     $cameBackFromLogin = true;
 }
 
+//If the user wants to see a page forbidden to unlogged user
+if(empty($_SESSION['userId']) &&($wantedPage !='login' && $wantedPage != 'logout' && $wantedPage != 'welcome')){
+    $wantedPage = 'login';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -61,6 +66,8 @@ if ($wantedPage == 'login' && !empty($_SESSION['userId'])) {
         <script src="js/head.js"></script>
         <script src="js/lib/handsontable-master/dist/handsontable.full.min.js"></script>
         <link rel="stylesheet" href="js/lib/handsontable-master/dist/handsontable.min.css" />
+        <script src="js/lib/handsontable-master/dist/pikaday/pikaday.js"></script>
+        <link rel="stylesheet" href="js/lib/handsontable-master/dist/pikaday/pikaday.css" />
         <?php
         include_once('includes/head.php');
         //JS and CSS files, specifically for the selected page

@@ -99,5 +99,25 @@ class ClientTDG implements TDG {
 
         return $conn->lastInsertId();
     }
+    
+    
+    public static function getAllNames(){
+        
+        $conn = pdo_connect();
+
+        $sql = $conn->prepare('SELECT DISTINCT companyName FROM Client');
+
+        $sql->execute();
+
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        $returnResult = [];
+        
+        foreach($result AS $entry){
+            $returnResult[] = $entry->companyName;
+        }
+        
+        return $returnResult;
+    }
 
 }

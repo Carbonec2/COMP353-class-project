@@ -3,28 +3,28 @@
 include_once(dirname(__FILE__) . '/../backendIncludeScript.php');
 
 switch (($_POST['method'])) {
-    case 'saveClientAndAccount':
-        echo (ClientTDG::saveClientAndAccount(getOV()));
+    case 'getContractTable':
+        echo json_encode(ContractTDG::getContractTable());
         break;
-    case 'getAllNames':
-        echo json_encode(ClientTDG::getAllNames());
+    case 'saveContractTable':
+        echo ContractTDG::saveContractTable(getOV());
         break;
     case 'insert':
-        echo json_encode(ClientTDG::insert(getOV()));
+        echo json_encode(ContractTDG::insert(getOV()));
         break;
     case 'update':
-        echo json_encode(ClientTDG::update(getOV()));
+        echo json_encode(ContractTDG::update(getOV()));
         break;
     case 'save':
-        echo json_encode(ClientTDG::save(getOV()));
+        echo json_encode(ContractTDG::save(getOV()));
         break;
     
     //Not used yet
     case 'getall':
-        echo json_encode(ClientTDG::getAll(getFilters()));
+        echo json_encode(ContractTDG::getAll(getFilters()));
         break;
     case 'get':
-        echo json_encode(ClientTDG::get(getId()));
+        echo json_encode(ContractTDG::get(getId()));
         break;
 }
 

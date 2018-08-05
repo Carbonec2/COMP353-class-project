@@ -2,8 +2,6 @@ class LineOfBusinessTDG {
 
     getAll(callbackMethod) {
 
-        //AJAX request to validate if we can authenticate the user
-
         $.ajax({
             method: "POST",
             url: "api/line-of-business-api.php",

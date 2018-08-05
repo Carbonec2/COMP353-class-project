@@ -9,6 +9,10 @@ switch (($_POST['method'])) {
     case 'saveEmployeeTable':
         echo EmployeeTDG::saveEmployeeTable(getOV());
         break;
+    case 'getManagerHashtable':
+        echo json_encode(EmployeeTDG::getManagerHashtable());
+        break;
+    
     case 'insert':
         echo json_encode(EmployeeTDG::insert(getOV()));
         break;

@@ -9,3 +9,4 @@ var roleTypeTDG = new RoleTypeTDG();
 var platformTypeTDG = new PlatformTypeTDG();
 var contractTypeTDG = new ContractTypeTDG();
 var contractTDG = new ContractTDG();
+var workChoiceTDG = new WorkChoiceTDG();

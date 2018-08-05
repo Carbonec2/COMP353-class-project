@@ -196,6 +196,10 @@ class ContractTDG implements TDG {
             //If it doesn't have an ID, it is a new entry
             if(empty($entry->id)){
                 
+                $entry->contractId= $contractId;
+                $entry->employeeId = $_SESSION['employeeId'];
+                
+                SaleRecordTDG::save($entry);
             }
             
         }

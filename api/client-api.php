@@ -9,6 +9,9 @@ switch (($_POST['method'])) {
     case 'getAllNames':
         echo json_encode(ClientTDG::getAllNames());
         break;
+    case 'getClientHashtable':
+        echo json_encode(ClientTDG::getClientHashtable());
+        break;
     case 'insert':
         echo json_encode(ClientTDG::insert(getOV()));
         break;

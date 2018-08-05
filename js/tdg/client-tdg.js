@@ -42,5 +42,24 @@ class ClientTDG {
             }
         });
     }
+    
+    getClientHashtable(callbackMethod) {
+        $.ajax({
+            method: "POST",
+            url: "api/employee-api.php",
+            data: {method: "getManagerHashtable"}
+        }).done(function (result) {
+
+            console.log(result);
+
+            result = JSON.parse(result);
+
+            console.log(result);
+
+            if (typeof (callbackMethod) !== "undefined" && typeof (callbackMethod) === "function") {
+                callbackMethod(result);
+            }
+        });
+    }
 
 }

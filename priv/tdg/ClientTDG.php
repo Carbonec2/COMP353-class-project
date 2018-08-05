@@ -121,5 +121,38 @@ class ClientTDG implements TDG {
         
         return $returnResult;
     }
+    
+    public static function getClientHashtable($conn = NULL){
+        
+        
+        if ($conn == NULL) {
+            $conn = pdo_connect();
+        }
+
+        $sql = $conn->prepare('SELECT 
+            Client.id AS id,
+            Client.companyName
+            FROM Client
+            ');
+        
+        $sql->execute();
+
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+
+        $nameToId = array();
+        $idToName = array();
+
+        foreach ($result as $entry) {
+            $nameToId[$entry->companyName] = $entry->id;
+            $idToName[$entry->id] = $entry->companyName;
+        }
+
+        $returnResult = new stdClass();
+
+        $returnResult->nameToId = $nameToId;
+        $returnResult->idToName = $idToName;
+
+        return $returnResult;
+    }
 
 }

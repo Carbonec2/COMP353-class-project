@@ -268,9 +268,18 @@ class ContractList {
 
     fetchCompanyList(query, process) {
 
+        clientTDG.getClientHashtable((result) => {
 
-        clientTDG.getAllNames((result) => {
-            process(result);
+            this.clientNameToId = result.nameToId;
+            this.clientIdToName = result.idToName;
+
+            let names = Object.keys(this.clientNameToId);
+
+            console.log(names);
+
+            if (typeof (process) === "function") {
+                process(names);
+            }
         });
     }
 
@@ -291,13 +300,14 @@ class ContractList {
     }
 
     getPageData() {
-        
+
         let data = this.handsontable.getSourceData();
-        
-        for(let i = 0; i < data.length; i++){
-            
+
+        for (let i = 0; i < data.length; i++) {
+
             data[i].managerId = this.nameToId[data[i].managerName];
-            
+            data[i].clientId = this.clientNameToId[data[i].companyName];
+
         }
 
         return this.handsontable.getSourceData();
@@ -310,7 +320,7 @@ class ContractList {
         contractTDG.saveContractTable(this.getPageData(), (result) => {
 
             console.log(result);
-            
+
             //this.fetchData(); //We reload the table
 
         });

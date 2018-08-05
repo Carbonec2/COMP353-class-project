@@ -19,6 +19,9 @@
                 echo '<li><span>Logged as Admin</span></li>';
                 echo '<li><a href="index.php?page=employeeList" id="employeeList">Employee List</a></li>';
                 break;
+            case 'Employee':
+                echo '<li><span>Logged as Employee</span></li>';
+                echo '<li><a href="index.php?page=workChoice" id="employeeList">Employee List</a></li>';
         }
         
         if(isset($_SESSION['clientId'])&&!empty($_SESSION['clientId'])){

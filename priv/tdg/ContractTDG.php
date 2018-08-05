@@ -24,8 +24,6 @@ class ContractTDG implements TDG {
         $sql = $conn->prepare('INSERT INTO Contract (
             contractType,
             managerId,
-            annualContractValue,
-            initialAmount,
             serviceStartDate,
             serviceEndDate,
             platformType,
@@ -35,8 +33,6 @@ class ContractTDG implements TDG {
             (
             :contractType,
             :managerId,
-            :annualContractValue,
-            :initialAmount,
             :serviceStartDate,
             :serviceEndDate,
             :platformType,
@@ -45,8 +41,8 @@ class ContractTDG implements TDG {
 
         $sql->bindValue(':contractType', $valueObject->contractType);
         $sql->bindValue(':managerId', $valueObject->managerId);
-        $sql->bindValue(':annualContractValue', $valueObject->annualContractValue);
-        $sql->bindValue(':initialAmount', $valueObject->initialAmount);
+        //$sql->bindValue(':annualContractValue', $valueObject->annualContractValue);
+        //$sql->bindValue(':initialAmount', $valueObject->initialAmount);
         $sql->bindValue(':serviceStartDate', $valueObject->serviceStartDate);
         $sql->bindValue(':serviceEndDate', $valueObject->serviceEndDate);
         $sql->bindValue(':platformType', $valueObject->platformType);
@@ -77,8 +73,6 @@ class ContractTDG implements TDG {
         $sql = $conn->prepare('UPDATE Contract SET 
             contractType = :contractType,
             managerId = :managerId,
-            annualContractValue = :annualContractValue,
-            initialAmount = :initialAmount,
             serviceStartDate = :serviceStartDate,
             serviceEndDate = :serviceEndDate,
             platformType = :platformType,
@@ -89,8 +83,8 @@ class ContractTDG implements TDG {
         $sql->bindValue(':id', $valueObject->id);
         $sql->bindValue(':contractType', $valueObject->contractType);
         $sql->bindValue(':managerId', $valueObject->managerId);
-        $sql->bindValue(':annualContractValue', $valueObject->annualContractValue);
-        $sql->bindValue(':initialAmount', $valueObject->initialAmount);
+        //$sql->bindValue(':annualContractValue', $valueObject->annualContractValue);
+        //$sql->bindValue(':initialAmount', $valueObject->initialAmount);
         $sql->bindValue(':serviceStartDate', $valueObject->serviceStartDate);
         $sql->bindValue(':serviceEndDate', $valueObject->serviceEndDate);
         $sql->bindValue(':platformType', $valueObject->platformType);
@@ -143,8 +137,6 @@ class ContractTDG implements TDG {
             Contract.id AS id, 
             contractType, 
             managerId,
-            annualContractValue,
-            initialAmount,
             serviceStartDate,
             serviceEndDate,
             platformType,
@@ -199,6 +191,13 @@ class ContractTDG implements TDG {
             }
 
             $contractId = ContractTDG::save($entry);
+            
+            //We should save the SaleRecord if it is newly inserted?
+            //If it doesn't have an ID, it is a new entry
+            if(empty($entry->id)){
+                
+            }
+            
         }
     }
 

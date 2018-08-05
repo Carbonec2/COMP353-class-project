@@ -188,34 +188,30 @@ class ContractList {
                 });
                 break;
             case 'Sales Associate':
-                //Can associate a contract manager
-                //Can it do something else?
-                //Can it create a contract?
+                //Can associate a contract manager and modify everything
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
-                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
+                        {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                         {data: 'annualContractValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
-                            },
-                            className: 'htDimmed',
-                            readOnly: true},
+                            }
+                        },
                         {data: 'initialAmount', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
-                            },
-                            className: 'htDimmed',
-                            readOnly: true},
-                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
-                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
-                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
-                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
-                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/, className: 'htDimmed', readOnly: true} //0 to 10 with this regex
+                            }
+                        },
+                        {data: 'serviceStartDate', type: 'date'},
+                        {data: 'serviceEndDate', type: 'date'},
+                        {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
+                        {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
                     ]
                 });
                 break;
@@ -314,6 +310,8 @@ class ContractList {
         contractTDG.saveContractTable(this.getPageData(), (result) => {
 
             console.log(result);
+            
+            //this.fetchData(); //We reload the table
 
         });
     }

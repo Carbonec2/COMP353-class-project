@@ -67,6 +67,7 @@ if(empty($_SESSION['userId']) &&($wantedPage !='login' && $wantedPage != 'logout
         <script src="js/lib/handsontable-master/dist/handsontable.full.min.js"></script>
         <link rel="stylesheet" href="js/lib/handsontable-master/dist/handsontable.min.css" />
         <script src="js/lib/handsontable-master/dist/pikaday/pikaday.js"></script>
+        <script src="js/lib/handsontable-master/dist/moment/moment.js"></script>
         <link rel="stylesheet" href="js/lib/handsontable-master/dist/pikaday/pikaday.css" />
         <?php
         include_once('includes/head.php');

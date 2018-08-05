@@ -33,13 +33,13 @@ class SaleRecordTDG implements TDG {
             :employeeId,
             :initialValue,
             :annualValue,
-            :recordedDate)');
+            NOW())');
 
         $sql->bindValue(':contractId', $valueObject->contractId);
         $sql->bindValue(':employeeId', $valueObject->employeeId);
-        $sql->bindValue(':initialValue', $valueObject->initialValue);
-        $sql->bindValue(':annualValue', $valueObject->annualValue);
-        $sql->bindValue(':recordedDate', 'NOW()');
+        $sql->bindValue(':initialValue', (!empty($valueObject->initialValue) ? $valueObject->initialValue : NULL));
+        $sql->bindValue(':annualValue', (!empty($valueObject->annualValue) ? $valueObject->annualValue : NULL));
+        //$sql->bindValue(':recordedDate', 'NOW()');
 
         $sql->execute();
 
@@ -48,7 +48,7 @@ class SaleRecordTDG implements TDG {
 
     public static function save($valueObject, &$conn = NULL) {
 
-        if (isset($valueObject->id)) {
+        if (isset($valueObject->recordedDate)) { //Since it is auto-generated
             return SaleRecordTDG::update($valueObject, $conn);
         } else {
             return SaleRecordTDG::insert($valueObject, $conn);
@@ -66,16 +66,14 @@ class SaleRecordTDG implements TDG {
             contractId = :contractId,
             employeeId = :employeeId,
             initialValue = :initialValue,
-            annualValue = :annualValue,
-            recordedDate = :recordedDate
+            annualValue = :annualValue
             WHERE contractId = :contractId AND employeeId = :employeeId');
 
         $sql->bindValue(':contractId', $valueObject->contractId);
         $sql->bindValue(':employeeId', $valueObject->employeeId);
         $sql->bindValue(':initialValue', $valueObject->initialValue);
         $sql->bindValue(':annualValue', $valueObject->annualValue);
-        $sql->bindValue(':recordedDate', 'NOW()');
-        
+
         $sql->execute();
 
         return $valueObject->contractId;

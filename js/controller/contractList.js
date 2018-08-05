@@ -37,18 +37,18 @@ class ContractList {
             columns: [
                 {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                 {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
-                {data: 'annualContractValue', type: 'numeric',
+                {data: 'annualValue', type: 'numeric',
                     numericFormat: {
                         pattern: '$0,0.00',
                         culture: 'en-US'
                     }},
-                {data: 'initialAmount', type: 'numeric',
+                {data: 'initialValue', type: 'numeric',
                     numericFormat: {
                         pattern: '$0,0.00',
                         culture: 'en-US'
                     }},
-                {data: 'serviceStartDate', type: 'date'},
-                {data: 'serviceEndDate', type: 'date'},
+                {data: 'serviceStartDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
+                {data: 'serviceEndDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                 {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
                 {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
                 {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
@@ -67,33 +67,6 @@ class ContractList {
 
     adjustTableRole() {
 
-
-        /*
-         switch ($_SESSION['roleType']) {
-         case 'Manager':
-         //He must see all contracts to be able to allocate employees on it 
-         //(Many to many, so a link on every contract to a contract allocation page (ContractAssignment table)
-         break;
-         case 'Sales Associate':
-         //He must see all contracts + can assign a contract manager
-         break;
-         case 'Employee':
-         //Nothing to see here
-         return;
-         break;
-         case 'Admin':
-         //Can see and update everything
-         //Can remove everything
-         break;
-         }
-         */
-
-
-
-
-
-
-
         //Set by head.php
         switch (globalRole) {
             case 'Client':
@@ -104,22 +77,22 @@ class ContractList {
                     columns: [
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
-                        {data: 'annualContractValue', type: 'numeric',
+                        {data: 'annualValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             },
                             className: 'htDimmed',
                             readOnly: true},
-                        {data: 'initialAmount', type: 'numeric',
+                        {data: 'initialValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             },
                             className: 'htDimmed',
                             readOnly: true},
-                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
-                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true, correctFormat: true, dateFormat: 'YYYY-MM-DD'},
+                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true, correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
@@ -136,22 +109,22 @@ class ContractList {
                     columns: [
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
-                        {data: 'annualContractValue', type: 'numeric',
+                        {data: 'annualValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             },
                             className: 'htDimmed',
                             readOnly: true},
-                        {data: 'initialAmount', type: 'numeric',
+                        {data: 'initialValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             },
                             className: 'htDimmed',
                             readOnly: true},
-                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true},
-                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true},
+                        {data: 'serviceStartDate', type: 'date', className: 'htDimmed', readOnly: true, correctFormat: true, dateFormat: 'YYYY-MM-DD'},
+                        {data: 'serviceEndDate', type: 'date', className: 'htDimmed', readOnly: true, correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/, className: 'htDimmed', readOnly: true} //0 to 10 with this regex
@@ -167,20 +140,20 @@ class ContractList {
                     columns: [
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
-                        {data: 'annualContractValue', type: 'numeric',
+                        {data: 'annualValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             }
                         },
-                        {data: 'initialAmount', type: 'numeric',
+                        {data: 'initialValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             }
                         },
-                        {data: 'serviceStartDate', type: 'date'},
-                        {data: 'serviceEndDate', type: 'date'},
+                        {data: 'serviceStartDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
+                        {data: 'serviceEndDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
@@ -195,20 +168,20 @@ class ContractList {
                     columns: [
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
-                        {data: 'annualContractValue', type: 'numeric',
+                        {data: 'annualValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             }
                         },
-                        {data: 'initialAmount', type: 'numeric',
+                        {data: 'initialValue', type: 'numeric',
                             numericFormat: {
                                 pattern: '$0,0.00',
                                 culture: 'en-US'
                             }
                         },
-                        {data: 'serviceStartDate', type: 'date'},
-                        {data: 'serviceEndDate', type: 'date'},
+                        {data: 'serviceStartDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
+                        {data: 'serviceEndDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
@@ -238,6 +211,7 @@ class ContractList {
         });
 
         this.fetchManagerList();
+        this.fetchCompanyList();
     }
 
     /**

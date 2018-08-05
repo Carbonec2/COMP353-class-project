@@ -46,8 +46,8 @@ class ClientTDG {
     getClientHashtable(callbackMethod) {
         $.ajax({
             method: "POST",
-            url: "api/employee-api.php",
-            data: {method: "getManagerHashtable"}
+            url: "api/client-api.php",
+            data: {method: "getClientHashtable"}
         }).done(function (result) {
 
             console.log(result);

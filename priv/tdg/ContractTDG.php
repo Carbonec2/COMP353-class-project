@@ -43,8 +43,8 @@ class ContractTDG implements TDG {
         $sql->bindValue(':managerId', $valueObject->managerId);
         //$sql->bindValue(':annualContractValue', $valueObject->annualContractValue);
         //$sql->bindValue(':initialAmount', $valueObject->initialAmount);
-        $sql->bindValue(':serviceStartDate', $valueObject->serviceStartDate);
-        $sql->bindValue(':serviceEndDate', $valueObject->serviceEndDate);
+        $sql->bindValue(':serviceStartDate', !empty($valueObject->serviceStartDate) ? $valueObject->serviceStartDate : NULL);
+        $sql->bindValue(':serviceEndDate', !empty($valueObject->serviceEndDate) ? $valueObject->serviceEndDate : NULL);
         $sql->bindValue(':platformType', $valueObject->platformType);
         $sql->bindValue(':satisfactionScore', $valueObject->satisfactionScore);
         $sql->bindValue(':clientId', $valueObject->clientId);
@@ -137,14 +137,23 @@ class ContractTDG implements TDG {
             Contract.id AS id, 
             contractType, 
             managerId,
+            Account.firstName,
+            Account.middleInitial,
+            Account.lastName,
             serviceStartDate,
             serviceEndDate,
             platformType,
             satisfactionScore,
+            SaleRecord.initialValue,
+            SaleRecord.annualValue,
+            SaleRecord.recordedDate,
             clientId,
             Client.companyName
             FROM Contract
             LEFT JOIN Client ON Contract.clientId = Client.id
+            LEFT JOIN SaleRecord ON Contract.id = SaleRecord.contractId
+            LEFT JOIN Employee ON Employee.id = Contract.managerId
+            LEFT JOIN Account ON Account.id = Employee.accountId
             WHERE 1 = 1 ' . $clientRestriction . '
             ORDER BY Contract.id');
 
@@ -164,7 +173,7 @@ class ContractTDG implements TDG {
                     break;
             }
         }
-        
+
         if (isset($_SESSION['clientId'])) {
             //We add this restriction if it is a client
             $sql->bindValue(':clientId', $_SESSION['clientId']);
@@ -172,7 +181,18 @@ class ContractTDG implements TDG {
 
         $sql->execute();
 
-        return $sql->fetchAll(PDO::FETCH_OBJ);
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        $returnResult = [];
+        
+        foreach ($result as $entry) {
+            
+            $entry->managerName = $entry->firstName.' '.$entry->middleInitial.' '.$entry->lastName;
+            
+            $returnResult[] = $entry;
+        }
+        
+        return $returnResult;
     }
 
     public static function saveContractTable($valueObject) {
@@ -191,17 +211,16 @@ class ContractTDG implements TDG {
             }
 
             $contractId = ContractTDG::save($entry);
-            
+
             //We should save the SaleRecord if it is newly inserted?
             //If it doesn't have an ID, it is a new entry
-            if(empty($entry->id)){
-                
-                $entry->contractId= $contractId;
+            //if (empty($entry->id)) {
+
+                $entry->contractId = $contractId;
                 $entry->employeeId = $_SESSION['employeeId'];
-                
+
                 SaleRecordTDG::save($entry);
-            }
-            
+            //}
         }
     }
 

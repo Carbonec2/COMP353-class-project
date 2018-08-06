@@ -31,7 +31,27 @@ class ContractTDG {
 
             console.log(result);
 
-            result = JSON.parse(result);
+            //result = JSON.parse(result);
+
+            console.log(result);
+
+            if (typeof (callbackMethod) !== "undefined" && typeof (callbackMethod) === "function") {
+                callbackMethod(result);
+            }
+        });
+
+    }
+    
+    deleteContractFromList(data, callbackMethod) {
+        $.ajax({
+            method: "POST",
+            url: "api/contract-api.php",
+            data: {method: "deleteContractFromList", OV: JSON.stringify(data)}
+        }).done(function (result) {
+
+            console.log(result);
+
+            //result = JSON.parse(result);
 
             console.log(result);
 

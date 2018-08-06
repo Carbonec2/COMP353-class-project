@@ -1,6 +1,5 @@
 class ClientTDG {
 
-
     saveClientAndAccount(clientObject, callbackMethod) {
 
         //AJAX request to validate if we can authenticate the user

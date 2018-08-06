@@ -4,6 +4,16 @@ class SaleRecordTDG implements TDG {
 
     public static function delete($index) {
         
+        $conn = pdo_connect();
+        
+        $sql = $conn->prepare('DELETE FROM SaleRecord WHERE contractId = :contractId');
+        
+        $sql->bindValue('contractId', $index);
+        
+        $sql->execute();
+        
+        return $index;
+        
     }
 
     public static function get($index) {

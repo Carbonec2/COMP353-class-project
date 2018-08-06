@@ -39,7 +39,7 @@ class AccountTDG implements TDG {
 
     public static function save($valueObject) {
 
-        if (isset($valueObject->id)) {
+        if (isset($valueObject->id) && !empty($valueObject->id)) {
             return AccountTDG::update($valueObject);
         } else {
             return AccountTDG::insert($valueObject);

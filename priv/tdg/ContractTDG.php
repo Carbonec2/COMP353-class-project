@@ -4,6 +4,16 @@ class ContractTDG implements TDG {
 
     public static function delete($index) {
         
+        $conn = pdo_connect();
+        
+        $sql=$conn->prepare('DELETE FROM Contract WHERE id = :id');
+        
+        $sql->bindValue(':id', $index);
+        
+        $sql->execute();
+        
+        return $index;
+        
     }
 
     public static function get($index) {
@@ -210,7 +220,7 @@ class ContractTDG implements TDG {
                 continue;
             }
 
-            $contractId = ContractTDG::save($entry);
+            $contractId = ContractTDG::save($entry, $conn);
 
             //We should save the SaleRecord if it is newly inserted?
             //If it doesn't have an ID, it is a new entry
@@ -219,9 +229,22 @@ class ContractTDG implements TDG {
                 $entry->contractId = $contractId;
                 $entry->employeeId = $_SESSION['employeeId'];
 
-                SaleRecordTDG::save($entry);
+                SaleRecordTDG::save($entry, $conn);
             //}
         }
+    }
+    
+    public static function deleteContractFromList($valueObject){
+        
+        
+        foreach ($valueObject AS $entry) {
+            
+            SaleRecordTDG::delete($entry);
+            
+            ContractTDG::delete($entry);
+            
+        }
+        
     }
 
 }

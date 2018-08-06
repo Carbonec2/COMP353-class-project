@@ -54,7 +54,7 @@ class EmployeeTDG implements TDG {
 
     public static function save($valueObject, &$conn = NULL) {
 
-        if (isset($valueObject->id)) {
+        if (isset($valueObject->id) && !empty($valueObject->id)) {
             return EmployeeTDG::update($valueObject, $conn);
         } else {
             return EmployeeTDG::insert($valueObject, $conn);
@@ -143,13 +143,27 @@ class EmployeeTDG implements TDG {
 
             //We save the account first, get the generated id and use it for Employee table
 
+            if (isset($entry->id) && !empty($entry->id)) {
+                $employeeId = $entry->id;
+            }
+
+            if (isset($entry->accountId) && !empty($entry->accountId)) {
+                $entry->id = $entry->accountId;
+            } else {
+                $entry->id = NULL;
+            }
+
             $accountId = AccountTDG::save($entry);
+
+            if (isset($entry->id) && !empty($entry->id)) {
+                $entry->id = $employeeId;
+            }
 
             $entry->accountId = $accountId;
 
             $employeeId = EmployeeTDG::save($entry);
         }
-        
+
         return true;
     }
 
@@ -169,7 +183,7 @@ class EmployeeTDG implements TDG {
             LEFT JOIN Account ON Employee.accountId = Account.id
             WHERE Employee.roleType = "Manager"
             ');
-        
+
         $sql->execute();
 
         $result = $sql->fetchAll(PDO::FETCH_OBJ);
@@ -189,7 +203,7 @@ class EmployeeTDG implements TDG {
 
         return $returnResult;
     }
-    
+
     public static function getEmployeeHashtable(&$conn = NULL) {
 
         if ($conn == NULL) {
@@ -204,7 +218,7 @@ class EmployeeTDG implements TDG {
             FROM Employee
             LEFT JOIN Account ON Employee.accountId = Account.id
             ');
-        
+
         $sql->execute();
 
         $result = $sql->fetchAll(PDO::FETCH_OBJ);

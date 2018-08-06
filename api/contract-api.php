@@ -9,6 +9,9 @@ switch (($_POST['method'])) {
     case 'saveContractTable':
         echo ContractTDG::saveContractTable(getOV());
         break;
+    case 'deleteContractFromList':
+        echo ContractTDG::deleteContractFromList(getOV());
+        break;
     case 'insert':
         echo json_encode(ContractTDG::insert(getOV()));
         break;

@@ -28,7 +28,7 @@
     <input type="text" name="firstName" id="firstName" placeholder="Representative First Name"/>
     <br/>
     <label for="middleInitial">Representative Middle Initial</label>
-    <input type="text" name="middleInitial" id="middleInitial" placeholder="Representative Middle Initial"/>
+    <input type="text" name="middleInitial" id="middleInitial" placeholder="Representative Middle Initial" maxlength="1"/>
     <br/>
     <label for="lastName">Representative Last Name</label>
     <input type="text" name="lastName" id="lastName" placeholder="Representative Last Name"/>

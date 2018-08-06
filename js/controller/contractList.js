@@ -19,6 +19,8 @@ class ContractList {
         this.buildTable();
 
         this.fetchData();
+        
+        this.deletedContractId = [];
     }
 
     bind() {
@@ -157,7 +159,11 @@ class ContractList {
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
-                    ]
+                    ],
+                    contextMenu: ['remove_row'],
+                    beforeRemoveRow: (index, amount, physicalRows, source) => {
+                        this.deletedContractId.push(this.handsontable.getDataAtRowProp(physicalRows, 'id'));
+                    }
                 });
                 break;
             case 'Sales Associate':
@@ -184,7 +190,7 @@ class ContractList {
                         {data: 'serviceEndDate', type: 'date', correctFormat: true, dateFormat: 'YYYY-MM-DD'},
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType},
-                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
+                        {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/, readOnly: true, className: 'htDimmed'} //0 to 10 with this regex
                     ]
                 });
                 break;
@@ -199,11 +205,12 @@ class ContractList {
 
         contractTDG.getContractTable((contractTableResult) => {
 
-            console.log(contractTableResult);
             this.data = contractTableResult;
             this.handsontable.updateSettings({
                 data: this.data
             });
+            
+            this.handsontable.render();
 
             this.adjustTableRole();
 
@@ -295,8 +302,16 @@ class ContractList {
 
             console.log(result);
 
-            //this.fetchData(); //We reload the table
+            this.fetchData(); //We reload the table
 
+        });
+        
+        //Bad idea to do this on 2 threads with this method naming,
+        //but I didn't want to modify saleContractTable just to add the deletion part
+        contractTDG.deleteContractFromList(this.deletedContractId, (result)=>{
+            console.log(result);
+            
+            this.fetchData();
         });
     }
 }

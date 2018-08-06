@@ -95,8 +95,6 @@ class CreateClientAccount {
 
         console.log(data);
 
-
-
         clientTDG.saveClientAndAccount(data, (result) => {
             
             //We should redirect to a general panel, but we will do it later on
@@ -108,7 +106,7 @@ class CreateClientAccount {
 
             $("#clientAccountForm").append($p);
             
-            $("#formSubmit").delete();
+            $("#formSubmit").empty();
 
             console.log(result);
         });

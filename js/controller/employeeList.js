@@ -159,6 +159,7 @@ class EmployeeList {
 
             console.log(result);
 
+            this.fetchData();
         });
     }
 }

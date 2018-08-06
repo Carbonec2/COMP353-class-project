@@ -9,7 +9,7 @@
         
         switch ($_SESSION['roleType']) {
             case 'Sales Associate':
-                echo '<li>Logged as Sales Associate</li>';
+                echo '<li><span>Logged as Sales Associate</span></li>';
                 echo '<li><a href="index.php?page=createClientAccount" id="createClientAccount">Create a Client</a></li>';
                 break;
             case 'Manager':

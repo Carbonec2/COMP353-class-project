@@ -105,7 +105,7 @@ INSERT INTO `Account` VALUES
   -- (40, 'Done', 'A', 'Not', 'work@study.com', '666 666 6666');
 
 INSERT INTO `Employee` VALUES
-  (101, 'Cloud Services', 'Premium', 'Associate', '10.00', 1, 'Montreal', 'QC'),
+  (101, 'Cloud Services', 'Premium', 'Associate', 10, 1, 'Montreal', 'QC'),
   (102, 'Research', 'Silver', 'Manager', 30, 2, 'Montreal', 'QC'),
   (103, 'Business Development', 'Premium', 'Admin', 60, 3, 'Toronto', 'ON'),
   (104, 'Development', 'Normal', 'Admin', 20,  4, 'Edmonton', 'AB'),
@@ -127,17 +127,17 @@ INSERT INTO `Employee` VALUES
   -- (20, 'Normal', 'Employee', 8, 'SK');
 
 INSERT INTO `Client` VALUES
-  -- (50, 21, 'Coca-Cola', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
-  -- (51, 22, 'Pepsi', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
-  -- (52, 23, 'St-Hubert', '456 St-Catherine', 'St-Hubert', 'QC', 'E4W 2I6'),
-  -- (53, 24, 'Nike', '1600 Maisonneuve', 'Edmonton', 'AB', 'H2X 2H2'),
-  -- (54, 25, 'YVR', '3211 Grant McConachie Way', 'Vancouver', 'BC', 'E4W 2I6'),
-  -- (55, 26, 'Adidas', '3400 McTavish', 'Toronto', 'ON', 'H2X 2H2'),
-  -- (56, 27, 'Trump Inc', '1600 Pennsylvania', 'Winnipeg', 'MB', 'A4W 2I6'),
-  -- (57, 28, 'CO2', '2456 Oxygen', 'Montreal', 'QC', 'H2X 2H2'),
-  -- (58, 29, 'US Preclearance', '2000 Airport Rd NE', 'Calgary', 'AB', 'T2E 6W5'),
-  -- (59, 30, 'WeThePeople', '234 rue Berri', 'Montreal', 'QC', 'H2X 2H2'),
-  -- (60, 31, 'C++ Inc', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6'),
+  (51, 'Coca-Cola', '123 Fake St', 'E4W 2I6', 11, 'Ottawa', 'ON'),
+  (52, 'Pepsi', '1600 Maisonneuve', 'H2X 2H2', 12, 'Montreal', 'QC'),
+  (53, 'St-Hubert', '456 St-Catherine', 'E4W 2I6', 13, 'St-Hubert', 'QC'),
+  (54, 'Nike', '1600 Maisonneuve', 'H2X 2H2', 14, 'Edmonton', 'AB'),
+  (55, 'YVR', '3211 Grant McConachie Way', 'E4W 2I6', 15, 'Vancouver', 'BC'),
+  (56, 'Adidas', '3400 McTavish', 'H2X 2H2', 16, 'Toronto', 'ON'),
+  (57, 'Trump Inc', '1600 Pennsylvania', 'A4W 2I6', 17, 'Winnipeg', 'MB'),
+  (58, 'CO2', '2456 Oxygen', 'H2X 2H2', 18, 'Montreal', 'QC'),
+  (59, 'US Preclearance', '2000 Airport Rd NE', 'T2E 6W5', 19, 'Calgary', 'AB'),
+  (60, 'WeThePeople', '234 rue Berri', 'H2X 2H2', 20, 'Montreal', 'QC');
+  -- (60, 31, 'C++ Inc', '123 Fake St', 'Ottawa', 'ON', 'E4W 2I6');
   -- (61, 32, 'RailVision', '4224 POWDERHORN CRES.', 'Mississiauga', 'ON', 'L5L 3B9'),
   -- (62, 33, 'Go Transit', '1600 Maisonneuve', 'Montreal', 'QC', 'H2X 2H2'),
   -- (63, 34, 'AMT', '3628 Avenue de Port-Royal', 'Bonaventure', 'QC', 'G0C 1E0'),
@@ -149,17 +149,17 @@ INSERT INTO `Client` VALUES
   -- (69, 40, 'Air Transat', '300 Leo Pariseau', 'Montreal', 'QC', 'H2X 4C1');  
 
 
-INSERT INTO contract VALUES
-  -- (1, 50, 'Cloud Services', 'Premium', 'Cloud', 1, '2018-07-31', '2019-01-01', 2),
-  -- (2, 51, 'Development', 'Gold', 'Cloud', 2, '2017-06-28', '2017-02-14', 5),
-  -- (3, 52, 'Research', 'Silver', 'On-Premises', 3, '2017-07-31', '2018-01-01', 7),
-  -- (4, 53, 'Business Development', 'Premium', 'Cloud', 4, '2018-07-26', '2019-01-01', 8),
-  -- (5, 54, 'Facilities Management', 'Diamond', 'On-Premises', 5, '2018-07-23', '2019-01-01', 8),
-  -- (6, 55, 'Research', 'Premium', 'Cloud', 6, '2018-07-31', '2019-01-01', 2),
-  -- (7, 56, 'Facilities Management', 'Premium', 'On-Premises', 7, '2017-06-28', '2017-02-14', 5),
-  -- (8, 57, 'Cloud Services', 'Premium', 'Cloud', 8, '2017-07-31', '2018-01-01', 7),
-  -- (9, 58, 'Research', 'Diamond', 'Cloud', 9, '2018-07-25', '2019-01-01', 8),  
-  -- (10, 59, 'Business Development', 'Silver', 'On-Premises', 10, '2018-07-28', '2019-01-01', 8),
+INSERT INTO `Contract` VALUES
+  (91, 'Premium', 7, '2018-07-31', '2019-01-01', 'Cloud', 7, 51),
+  (92, 'Gold', 51, 'Development', 'Gold', , 2, '2017-06-28', '2017-02-14', 51),
+  (93, 'Silver', 52, 'Research', 'Silver', 'On-Premises', 2, '2017-07-31', '2018-01-01', 51),
+  (94, 'Diamond', 53, 'Business Development', 'Premium', 'Cloud', 2, '2018-07-26', '2019-01-01', 56),
+  (95, 54, 'Facilities Management', 'Diamond', 'On-Premises', 2, '2018-07-23', '2019-01-01', 8),
+  (96, 55, 'Research', 'Premium', 'Cloud', 6, '2018-07-31', '2019-01-01', 2),
+  (97, 56, 'Facilities Management', 'Premium', 'On-Premises', 7, '2017-06-28', '2017-02-14', 5),
+  (98, 57, 'Cloud Services', 'Premium', 'Cloud', 8, '2017-07-31', '2018-01-01', 7),
+  (99, 58, 'Research', 'Diamond', 'Cloud', 9, '2018-07-25', '2019-01-01', 8),  
+  (100, 59, 'Business Development', 'Silver', 'On-Premises', 10, '2018-07-28', '2019-01-01', 8),
   -- (11, 60, 'Cloud Services', 'Gold', 'Cloud', 11, '2018-07-31', '2019-01-01', 2),
   -- (12, 61, 'Research', 'Premium', 'Cloud', 12, '2017-06-28', '2017-02-14', 5),
   -- (13, 62, 'Business Development', 'Premium', 'On-Premises', 13, '2017-07-31', '2018-01-01', 7),

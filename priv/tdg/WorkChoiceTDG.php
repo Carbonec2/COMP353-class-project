@@ -67,4 +67,21 @@ class WorkChoiceTDG implements TDG {
         return $returnResult;
     }
 
+  public static function saveWorkChoiceTable($workChoices) {
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
+
+    $conn = pdo_connect();
+
+    foreach ($workChoices as $wc) {
+      if (empty($entry->contractType) || empty($entry->platformType)) {
+        continue;
+      }
+
+      WorkChoiceTDG::save($wc,$conn);
+    }
+  }
+
 }

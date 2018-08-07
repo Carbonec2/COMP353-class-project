@@ -33,9 +33,10 @@ UPDATE `Contract`
 SET `Contract`.`satisfactionScore` = score
 WHERE `id` = $id;
 -- 10 --
+CREATE VIEW Manager_Score AS
 SELECT `satisfactionScore`
 FROM `Contract`
-WHERE `Contract`.`managerId` = $id;
+WHERE `managerId` = $id;
 -- 11 --
 UPDATE `Contract`
 SET `clientId` = $client

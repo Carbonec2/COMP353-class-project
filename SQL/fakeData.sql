@@ -170,3 +170,16 @@ INSERT INTO `Contract` VALUES
   -- (18, 67, 'Facilities Management', 'Premium', 'Cloud', 18, '2017-07-31', '2018-01-01', 7),
   -- (19, 68, 'Research', 'Premium', 'On-Premises', 19, '2018-07-25', '2019-01-01', 8),  
   -- (20, 69, 'Development', 'Premium', 'On-Premises', 20, '2018-07-28', '2019-01-01', 8);
+
+
+INSERT INTO `WorkChoice` VALUES
+  (101, 'Silver', 'Cloud'),
+  (103, 'Diamond', 'On-Premises'),
+  (102, 'Gold', 'Cloud'),
+  (104, 'Diamond', 'Cloud'),
+  (105, 'Gold', 'On-Premises'),
+  (106, 'Premium', 'Cloud'),
+  (106, 'Premium', 'On-Premises'),
+  (107, 'Gold', 'Cloud'),
+  (108, 'Diamond', 'On-Premises'),
+  (109, 'Gold', 'Cloud');

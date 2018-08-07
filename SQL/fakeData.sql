@@ -151,11 +151,11 @@ INSERT INTO `Client` VALUES
 
 INSERT INTO `Contract` VALUES
   (91, 'Premium', 7, '2018-07-31', '2019-01-01', 'Cloud', 7, 51),
-  (92, 'Gold', 51, 'Development', 'Gold', , 2, '2017-06-28', '2017-02-14', 51),
-  (93, 'Silver', 52, 'Research', 'Silver', 'On-Premises', 2, '2017-07-31', '2018-01-01', 51),
-  (94, 'Diamond', 53, 'Business Development', 'Premium', 'Cloud', 2, '2018-07-26', '2019-01-01', 56),
-  (95, 54, 'Facilities Management', 'Diamond', 'On-Premises', 2, '2018-07-23', '2019-01-01', 8),
-  (96, 55, 'Research', 'Premium', 'Cloud', 6, '2018-07-31', '2019-01-01', 2),
+  (92, 'Gold', 2, '2017-06-28', '2017-02-14', 'On-Premises', 3, 40),
+  (93, 'Silver', 2, '2017-07-31', '2018-01-01', 'On-Premises', 9, 20),
+  (94, 'Diamond', 7, 'Business Development', 'Premium', 'Cloud', 2, '2018-07-26', '2019-01-01', 56),
+  (95, 'Gold', 2, 'Facilities Management', 'Diamond', 'On-Premises', 2, '2018-07-23', '2019-01-01', 8),
+  (96, 'Silver', 7, 'Research', 'Premium', 'Cloud', 6, '2018-07-31', '2019-01-01', 2),
   (97, 56, 'Facilities Management', 'Premium', 'On-Premises', 7, '2017-06-28', '2017-02-14', 5),
   (98, 57, 'Cloud Services', 'Premium', 'Cloud', 8, '2017-07-31', '2018-01-01', 7),
   (99, 58, 'Research', 'Diamond', 'Cloud', 9, '2018-07-25', '2019-01-01', 8),  

@@ -31,12 +31,15 @@ class ContractList {
     }
 
     buildTable() {
+        console.log(this.data);
+
         this.handsontable = new Handsontable($('#contractListHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+            colHeaders: ['Manage assignments','Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
                 'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
             rowHeaders: true,
             columns: [
+                {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: 'true'},
                 {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                 {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                 {data: 'annualValue', type: 'numeric',
@@ -77,6 +80,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
+                        {data: 'null', type: 'dropdown', className: 'htDimmed', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
                         {data: 'annualValue', type: 'numeric',
@@ -109,6 +113,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
+                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
                         {data: 'annualValue', type: 'numeric',
@@ -140,6 +145,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
+                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                         {data: 'annualValue', type: 'numeric',
@@ -172,6 +178,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
+                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                         {data: 'annualValue', type: 'numeric',
@@ -204,11 +211,20 @@ class ContractList {
     fetchData() {
 
         contractTDG.getContractTable((contractTableResult) => {
-
             this.data = contractTableResult;
+            this.data = this.data.map((ct) => {
+              if (ct) {
+                ct.null = null;
+                ct.manageLink = `<a href='/index.php?page=contractAssignment&contract=${ct.id}'>Manage</a>`;
+              }
+              return ct;
+            });
+            
+
             this.handsontable.updateSettings({
                 data: this.data
             });
+        
             
             this.handsontable.render();
 

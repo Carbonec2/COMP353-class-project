@@ -15,7 +15,7 @@ SELECT * FROM `SaleRecord`
 WHERE `recordedDate`  > ADDDATE(NOW(), -10)
 -- 3 --
 SELECT * FROM `Employee`
-WHERE jurisdiction = 'QC';
+WHERE province = 'QC';
 -- 4 --
 SELECT id FROM contract
 where contract_type = 'Gold';

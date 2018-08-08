@@ -125,6 +125,48 @@ class EmployeeTDG implements TDG {
         return $sql->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public static function getInterestedEmployees($contractId) {
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
+        $conn = pdo_connect();
+
+        $sql = $conn->prepare('SELECT 
+            Employee.id AS id, 
+            firstName,
+            middleInitial,
+            lastName
+            FROM Employee
+            JOIN Account ON Employee.accountId = Account.id
+            JOIN WorkChoice ON Employee.id = WorkChoice.employeeId
+            JOIN Contract ON (Contract.platformType = WorkChoice.platformType AND Contract.contractType = WorkChoice.contractType)
+            WHERE Contract.id=:cid
+            ORDER BY Employee.id');
+
+        $sql->bindValue('cid',$contractId);
+        $sql->execute();
+
+        $result =  $sql->fetchAll(PDO::FETCH_OBJ);
+
+        $nameToId = array();
+        $idToName = array();
+
+        foreach ($result as $entry) {
+            $nameToId[$entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName] = $entry->id;
+            $idToName[$entry->id] = $entry->firstName . ' ' . $entry->middleInitial . ' ' . $entry->lastName;
+        }
+
+        $returnResult = new stdClass();
+
+        $returnResult->nameToId = $nameToId;
+        $returnResult->idToName = $idToName;
+
+        return $returnResult;
+
+    }
+    
+
     public static function saveEmployeeTable($valueObject) {
 
         if (empty($_SESSION['userId'])) {

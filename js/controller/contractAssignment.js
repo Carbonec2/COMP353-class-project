@@ -12,6 +12,7 @@ class ContractAssignment {
     constructor() {
 
         this.bind();
+        this.fetchEmployeeList();
 
         this.data = [];
         
@@ -19,11 +20,10 @@ class ContractAssignment {
 
         this.handsontable = new Handsontable($('#contractAssignmentHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Employee','Contract', 'Hours Worked'],
+            colHeaders: ['Employee', 'Hours Worked'],
             rowHeaders: true,
             columns: [
                 {data: 'employeeName', type: 'dropdown', source: this.fetchEmployeeList},
-                {data: 'contract', type: 'dropdown', source: this.fetchContractName},
                 {data: 'hoursWorked', type: 'numeric'}
             ],
             minSpareRows: 1,
@@ -59,19 +59,21 @@ class ContractAssignment {
 
     
     fetchEmployeeList(query, process) {
+      const params = (new URL(document.location)).searchParams;
+      const contract = params.get("contract");
 
-        employeeTDG.getEmployeeHashtable((result) => {
+        employeeTDG.getInterestedEmployees(contract, function (result)  {
             this.employeeNameToId = result.nameToId;
             this.employeeIdToName = result.idToName;
 
-            let names = Object.keys(this.nameToId);
+            let names = Object.keys(this.employeeNameToId);
 
             console.log(names);
 
             if (typeof (process) === "function") {
                 process(names);
             }
-        });
+        }.bind(this));
     }
     
     /**
@@ -92,7 +94,8 @@ class ContractAssignment {
     }
 
     getPageData() {
-        
+        console.log(this.employeeNameToId);
+ 
         let data = this.handsontable.getSourceData();
         
         //We revert the dropdown from the hashtable
@@ -104,10 +107,12 @@ class ContractAssignment {
     }
 
     formSubmit() {
-        
+        const params = (new URL(document.location)).searchParams;
+      const contract = params.get("contract");
+ 
         console.log(this.getPageData());
 
-        contractAssignmentTDG.saveContractAssignmentTable(this.getPageData(), (result) => {
+        contractAssignmentTDG.saveContractAssignmentTable(this.getPageData(), contract, (result) => {
 
             console.log(result);
 

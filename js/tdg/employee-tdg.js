@@ -80,4 +80,18 @@ class EmployeeTDG {
         });
     }
 
+  getInterestedEmployees(contractId, cb) {
+    $.ajax({
+      method: "POST",
+      url: "api/employee-api.php",
+      data: { method: "getInterestedEmployees", contract: contractId },
+    }).done(res => {
+      console.log(res);
+      const json = JSON.parse(res);
+      console.log(json)
+
+     cb(json);
+  });
+ }
 }
+

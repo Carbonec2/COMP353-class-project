@@ -1,2 +1,2 @@
-<h1>Our Dear Leader, Khaled Jababo</h1>
-<img src="jababo.jpg">
+<h1>AT YOUR SERVICE</h1>
+<img src="dcma.jpg">

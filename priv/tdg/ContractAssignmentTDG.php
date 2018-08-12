@@ -54,13 +54,16 @@ class ContractAssignmentTDG implements TDG {
         return; //Return primary key
     }
     
-    public static function getContractAssignmentTable(){
+    public static function getContractAssignmentTable($objectValue){
         
         $conn = pdo_connect();
         
         $sql = $conn->prepare('SELECT employeeId, firstName, middleInitial,lastName, contractId, hoursWorked FROM ContractAssignment
           JOIN Employee ON Employee.id = ContractAssignment.employeeId
-          JOIN Account ON Employee.accountId = Account.id');
+          JOIN Account ON Employee.accountId = Account.id
+          WHERE ContractAssignment.contractId = :contractId');
+        
+        $sql->bindValue(':contractId', $objectValue->contractId);
         
         $sql->execute();
         

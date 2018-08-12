@@ -15,20 +15,25 @@ class ContractAssignment {
         this.fetchEmployeeList();
 
         this.data = [];
-        
+
         //List of columns incomplete
 
         this.handsontable = new Handsontable($('#contractAssignmentHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Employee', 'Hours Worked'],
+            colHeaders: ['Employee', 'Contract', 'Hours Worked'],
             rowHeaders: true,
             columns: [
                 {data: 'employeeName', type: 'dropdown', source: this.fetchEmployeeList},
+                {data: 'contractName', type: 'dropdown', source: this.fetchContractList},
                 {data: 'hoursWorked', type: 'numeric'}
             ],
             minSpareRows: 1,
             stretchH: "all"
         });
+        
+        const params = (new URL(document.location)).searchParams;
+        
+        this.contract = params.get("contract");
 
         this.fetchData();
     }
@@ -45,11 +50,13 @@ class ContractAssignment {
      * @returns {undefined}
      */
     fetchData() {
-        
-        contractAssignmentTDG.getContractAssignmentTable((contractAssignmentTableResult) => {
+
+        contractAssignmentTDG.getContractAssignmentTable(this.contract, (contractAssignmentTableResult) => {
 
             console.log(contractAssignmentTableResult);
+            
             this.data = contractAssignmentTableResult;
+            
             this.handsontable.updateSettings({
                 data: this.data
             });
@@ -57,12 +64,9 @@ class ContractAssignment {
         });
     }
 
-    
     fetchEmployeeList(query, process) {
-      const params = (new URL(document.location)).searchParams;
-      const contract = params.get("contract");
 
-        employeeTDG.getInterestedEmployees(contract, function (result)  {
+        employeeTDG.getInterestedEmployees(this.contract, function (result) {
             this.employeeNameToId = result.nameToId;
             this.employeeIdToName = result.idToName;
 
@@ -76,6 +80,22 @@ class ContractAssignment {
         }.bind(this));
     }
     
+    fetchContractList(query, process) {
+
+        contractTDG.getContractList(this.contract, function (result) {
+            this.employeeNameToId = result.nameToId;
+            this.employeeIdToName = result.idToName;
+
+            let names = Object.keys(this.employeeNameToId);
+
+            console.log(names);
+
+            if (typeof (process) === "function") {
+                process(names);
+            }
+        }.bind(this));
+    }
+
     /**
      * Handsontable dropdown source handler
      * @param {type} query
@@ -83,23 +103,23 @@ class ContractAssignment {
      * @returns {undefined}
      */
     fetchContractName(query, process) {
-        
+
         let result = [];
-        
+
         //Fill result with a set of contract names with the TDG, in async
 
         //contractTypeTDG.getAllNames((result) => {
-            process(result);
+        process(result);
         //});
     }
 
     getPageData() {
         console.log(this.employeeNameToId);
- 
+
         let data = this.handsontable.getSourceData();
-        
+
         //We revert the dropdown from the hashtable
-        for(let i = 0; i<data.length; i++){
+        for (let i = 0; i < data.length; i++) {
             data[i].employeeId = this.employeeNameToId[data[i].employeeName];
         }
 
@@ -107,12 +127,10 @@ class ContractAssignment {
     }
 
     formSubmit() {
-        const params = (new URL(document.location)).searchParams;
-      const contract = params.get("contract");
- 
+
         console.log(this.getPageData());
 
-        contractAssignmentTDG.saveContractAssignmentTable(this.getPageData(), contract, (result) => {
+        contractAssignmentTDG.saveContractAssignmentTable(this.getPageData(), this.contract, (result) => {
 
             console.log(result);
 

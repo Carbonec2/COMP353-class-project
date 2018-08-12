@@ -19,7 +19,7 @@ class ContractList {
         this.buildTable();
 
         this.fetchData();
-        
+
         this.deletedContractId = [];
     }
 
@@ -35,7 +35,7 @@ class ContractList {
 
         this.handsontable = new Handsontable($('#contractListHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Manage assignments','Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+            colHeaders: ['Manage assignments', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
                 'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
             rowHeaders: true,
             columns: [
@@ -79,8 +79,9 @@ class ContractList {
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
+                    colHeaders: ['Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+                        'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
                     columns: [
-                        {data: 'null', type: 'dropdown', className: 'htDimmed', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
                         {data: 'annualValue', type: 'numeric',
@@ -112,6 +113,8 @@ class ContractList {
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
+                    colHeaders: ['Manage assignments', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+                        'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
                     columns: [
                         {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
@@ -144,6 +147,8 @@ class ContractList {
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
+                    colHeaders: ['Manage assignments', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+                        'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
                     columns: [
                         {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
@@ -177,6 +182,8 @@ class ContractList {
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
+                    colHeaders: ['Manage assignments', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+                        'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
                     columns: [
                         {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
@@ -213,19 +220,19 @@ class ContractList {
         contractTDG.getContractTable((contractTableResult) => {
             this.data = contractTableResult;
             this.data = this.data.map((ct) => {
-              if (ct) {
-                ct.null = null;
-                ct.manageLink = `<a href='/index.php?page=contractAssignment&contract=${ct.id}'>Manage</a>`;
-              }
-              return ct;
+                if (ct) {
+                    ct.null = null;
+                    ct.manageLink = `<a href='index.php?page=contractAssignment&contract=${ct.id}'>Manage</a>`;
+                }
+                return ct;
             });
-            
+
 
             this.handsontable.updateSettings({
                 data: this.data
             });
-        
-            
+
+
             this.handsontable.render();
 
             this.adjustTableRole();
@@ -321,12 +328,12 @@ class ContractList {
             this.fetchData(); //We reload the table
 
         });
-        
+
         //Bad idea to do this on 2 threads with this method naming,
         //but I didn't want to modify saleContractTable just to add the deletion part
-        contractTDG.deleteContractFromList(this.deletedContractId, (result)=>{
+        contractTDG.deleteContractFromList(this.deletedContractId, (result) => {
             console.log(result);
-            
+
             this.fetchData();
         });
     }

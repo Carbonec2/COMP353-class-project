@@ -1,13 +1,13 @@
 class ContractAssignmentTDG {
 
-    getContractAssignmentTable(callbackMethod) {
+    getContractAssignmentTable(contractId, callbackMethod) {
 
         //AJAX request to validate if we can authenticate the user
 
         $.ajax({
             method: "POST",
             url: "api/contract-assignment-api.php",
-            data: {method: "getContractAssignmentTable"}
+            data: {method: "getContractAssignmentTable", OV: contractId}
         }).done(function (result) {
 
             console.log(result);
@@ -41,5 +41,5 @@ class ContractAssignmentTDG {
         });
 
     }
-    
+
 }

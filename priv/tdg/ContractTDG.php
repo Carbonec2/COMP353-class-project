@@ -246,5 +246,30 @@ class ContractTDG implements TDG {
         }
         
     }
+    
+    public static function getContractList(){
+        
+        $conn = pdo_connect();
+        
+        $sql = $conn->prepare('SELECT Contract.id AS id, Client.companyName, 
+            Contract.contractType, Contract.serviceStartDate 
+            FROM Contract
+            LEFT JOIN Client ON Contract.clientId = Client.id
+            ');
+        
+        $sql->execute();
+        
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        $returnResult = [];
+        
+        foreach ($result AS $entry){
+            
+            
+            
+        }
+        
+        
+    }
 
 }

@@ -10,6 +10,10 @@ $(document).ready(() => {
 class ContractAssignment {
 
     constructor() {
+        
+        const params = (new URL(document.location)).searchParams;
+        
+        this.contract = params.get("contract");
 
         this.bind();
         this.fetchEmployeeList();
@@ -31,9 +35,7 @@ class ContractAssignment {
             stretchH: "all"
         });
         
-        const params = (new URL(document.location)).searchParams;
         
-        this.contract = params.get("contract");
 
         this.fetchData();
     }
@@ -83,10 +85,10 @@ class ContractAssignment {
     fetchContractList(query, process) {
 
         contractTDG.getContractList(this.contract, function (result) {
-            this.employeeNameToId = result.nameToId;
-            this.employeeIdToName = result.idToName;
+            this.contractNameToId = result.nameToId;
+            this.contractIdToName = result.idToName;
 
-            let names = Object.keys(this.employeeNameToId);
+            let names = Object.keys(this.contractNameToId);
 
             console.log(names);
 

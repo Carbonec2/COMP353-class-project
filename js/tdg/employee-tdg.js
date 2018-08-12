@@ -41,7 +41,7 @@ class EmployeeTDG {
         });
 
     }
-    
+
     getManagerHashtable(callbackMethod) {
         $.ajax({
             method: "POST",
@@ -60,7 +60,7 @@ class EmployeeTDG {
             }
         });
     }
-    
+
     getEmployeeHashtable(callbackMethod) {
         $.ajax({
             method: "POST",
@@ -80,18 +80,20 @@ class EmployeeTDG {
         });
     }
 
-  getInterestedEmployees(contractId, cb) {
-    $.ajax({
-      method: "POST",
-      url: "api/employee-api.php",
-      data: { method: "getInterestedEmployees", contract: contractId },
-    }).done(res => {
-      console.log(res);
-      const json = JSON.parse(res);
-      console.log(json)
+    getInterestedEmployees(contractId, cb) {
+        $.ajax({
+            method: "POST",
+            url: "api/employee-api.php",
+            data: {method: "getInterestedEmployees", contract: contractId},
+        }).done(res => {
+            console.log(res);
+            const json = JSON.parse(res);
+            console.log(json);
 
-     cb(json);
-  });
- }
+            if (typeof (cb) === "function") {
+                cb(json);
+            }
+        });
+    }
 }
 

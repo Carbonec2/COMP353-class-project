@@ -79,9 +79,10 @@ class ContractList {
                 this.handsontable.updateSettings({
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
-                    colHeaders: ['Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
+                    colHeaders: ['Status', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
                         'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],
                     columns: [
+                        {data: 'dateStatus', type: 'dropdown', renderer: 'html', readOnly: 'true'},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
                         {data: 'annualValue', type: 'numeric',
@@ -103,7 +104,8 @@ class ContractList {
                         {data: 'platformType', type: 'dropdown', source: this.fetchPlatformType, className: 'htDimmed', readOnly: true},
                         {data: 'contractType', type: 'dropdown', source: this.fetchContractType, className: 'htDimmed', readOnly: true},
                         {data: 'satisfactionScore', type: 'numeric', validator: /^[0-9]$|^10$/} //0 to 10 with this regex
-                    ]
+                    ],
+                    stretchH: "all"
                 });
                 break;
             case 'Manager':
@@ -223,6 +225,22 @@ class ContractList {
                 if (ct) {
                     ct.null = null;
                     ct.manageLink = `<a href='index.php?page=contractAssignment&contract=${ct.id}'>Manage</a>`;
+                }
+                return ct;
+            });
+
+            this.data = this.data.map((ct) => {
+                if (ct) {
+
+                    let endDate = new Date(ct.serviceEndDate);
+                    let today = new Date();
+
+                    if (today > endDate) {
+                        ct.dateStatus = 'Expired';
+                    } else {
+                        ct.dateStatus = 'Active';
+                    }
+
                 }
                 return ct;
             });

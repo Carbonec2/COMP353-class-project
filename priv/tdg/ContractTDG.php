@@ -257,19 +257,24 @@ class ContractTDG implements TDG {
             LEFT JOIN Client ON Contract.clientId = Client.id
             ');
         
-        $sql->execute();
+        $sql->execute();        
         
-        $result = $sql->fetchAll(PDO::FETCH_OBJ);
-        
-        $returnResult = [];
-        
-        foreach ($result AS $entry){
-            
-            
-            
+        $result =  $sql->fetchAll(PDO::FETCH_OBJ);
+
+        $nameToId = array();
+        $idToName = array();
+
+        foreach ($result as $entry) {
+            $nameToId[$entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate] = $entry->id;
+            $idToName[$entry->id] = $entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate;
         }
-        
-        
+
+        $returnResult = new stdClass();
+
+        $returnResult->nameToId = $nameToId;
+        $returnResult->idToName = $idToName;
+
+        return $returnResult;
     }
 
 }

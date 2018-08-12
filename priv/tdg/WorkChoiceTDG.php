@@ -21,12 +21,15 @@ class WorkChoiceTDG implements TDG {
             $conn = pdo_connect();
         }
 
-        $sql = $conn->prepare('INSERT INTO WorkChoice VALUES (:eid,:ct,:pt);');
-        $sql->bindValue('eid', $_SESSION['userId']);
-        $sql->bindValue('ct', $valueObject->contractType);
-        $sql->bindValue('pt', $valueObject->platform);
-        $sql->execute();
+        $sql = $conn->prepare('INSERT INTO WorkChoice (employeeId, contractType, platformType) 
+            VALUES (:employeeId, :contractType, :platform)');
         
+        $sql->bindValue('employeeId', $_SESSION['employeeId']);
+        $sql->bindValue(':contractType', $valueObject->contractType);
+        $sql->bindValue(':platform', $valueObject->platform);
+        
+        $sql->execute();
+
 
         return $conn->lastInsertId();
     }
@@ -48,53 +51,54 @@ class WorkChoiceTDG implements TDG {
             $conn = pdo_connect();
         }
 
-        
+
 
         return; //Return primary key
     }
-    
-    public static function getWorkChoiceTable(){
-        
+
+    public static function getWorkChoiceTable() {
+
         $conn = pdo_connect();
-        
-        $sql = $conn->prepare('SELECT employeeId, contractType, platformType FROM WorkChoice WHERE employeeId=:eid');
-        $sql->bindValue('eid',$_SESSION['userId']);
-        
+
+        $sql = $conn->prepare('SELECT employeeId, contractType, platformType FROM WorkChoice WHERE employeeId=:employeeId');
+        $sql->bindValue('employeeId', $_SESSION['employeeId']);
+
         $sql->execute();
-        
+
         $result = $sql->fetchAll(PDO::FETCH_OBJ);
-        
+
         $returnResult = [];
-        
+
         foreach ($result as $entry) {
             //Do something on the data if needed
             $entry->platform = $entry->platformType;
             $returnResult[] = $entry;
         }
-        
+
         return $returnResult;
     }
 
-  public static function saveWorkChoiceTable($workChoices) {
+    public static function saveWorkChoiceTable($workChoices) {
         if (empty($_SESSION['userId'])) {
             return;
         }
 
+        $conn = pdo_connect();
 
-    $conn = pdo_connect();
-    print_r($workChoices);
-
-        $sql = $conn->prepare('DELETE FROM WorkChoice WHERE employeeId=:eid;');
-        $sql->bindValue('eid',$_SESSION['userId']);
+        $sql = $conn->prepare('DELETE FROM WorkChoice WHERE employeeId = :employeeId');
+        
+        $sql->bindValue(':employeeId', $_SESSION['employeeId']);
         $sql->execute();
 
-    foreach ($workChoices as $wc) {
-      if (empty($wc->contractType) || empty($wc->platform)) {
-        continue;
-      }
+        foreach ($workChoices as $wc) {
+            if (empty($wc->contractType) || empty($wc->platform)) {
+                continue;
+            }
 
-      WorkChoiceTDG::save($wc,$conn);
+            WorkChoiceTDG::save($wc, $conn);
+        }
+        
+        return 0;
     }
-  }
 
 }

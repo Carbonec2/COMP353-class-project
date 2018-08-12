@@ -21,7 +21,7 @@
                 break;
             case 'Employee':
                 echo '<li><span>Logged as Employee</span></li>';
-                echo '<li><a href="index.php?page=workChoice" id="employeeList">Employee List</a></li>';
+                echo '<li><a href="index.php?page=workChoice" id="employeeList">Work Choice</a></li>';
         }
         
         if(isset($_SESSION['clientId'])&&!empty($_SESSION['clientId'])){

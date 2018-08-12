@@ -113,7 +113,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
-                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
+                        {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList, className: 'htDimmed', readOnly: true},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList, className: 'htDimmed', readOnly: true},
                         {data: 'annualValue', type: 'numeric',
@@ -145,7 +145,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
-                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
+                        {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                         {data: 'annualValue', type: 'numeric',
@@ -178,7 +178,7 @@ class ContractList {
                     minSpareRows: 0, //Lock the table to a max number of rows
                     maxRows: this.data.length, //Lock the table to a max number of rows
                     columns: [
-                        {data: 'manageLink', type: 'dropdown', renderer: 'html', readOnly: true},
+                        {data: 'manageLink', type: 'text', renderer: 'html', readOnly: true},
                         {data: 'companyName', type: 'dropdown', source: this.fetchCompanyList},
                         {data: 'managerName', type: 'dropdown', source: this.fetchManagerList},
                         {data: 'annualValue', type: 'numeric',

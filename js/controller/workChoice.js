@@ -93,7 +93,7 @@ class WorkChoice {
         workChoiceTDG.saveWorkChoiceTable(this.getPageData(), (result) => {
 
             console.log(result);
-
+            this.fetchData();
         });
     }
 }

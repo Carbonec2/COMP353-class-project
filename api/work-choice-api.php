@@ -4,7 +4,7 @@ include_once(dirname(__FILE__) . '/../backendIncludeScript.php');
 
 switch (($_POST['method'])) {
     case 'getWorkChoiceTable':
-        echo json_encode(WorkChoiceTDG::getWorkChoiceTable(getOV()));
+        echo json_encode(WorkChoiceTDG::getWorkChoiceTable());
         break;
     case 'saveWorkChoiceTable':
         echo WorkChoiceTDG::saveWorkChoiceTable(getOV());

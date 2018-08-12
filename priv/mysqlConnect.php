@@ -6,7 +6,7 @@ function pdo_connect(){
 	$user = 'root';
 	$pass = '';
 	
-	$dbh = new PDO('mysql:host=localhost;dbname=ycc353_1', $user, $pass);
+	$dbh = new PDO('mysql:host=127.0.0.1;dbname=ycc353_1', $user, $pass);
         
         //Utf8 character set
         $sql1 = $dbh->prepare('SET CHARACTER SET utf8');

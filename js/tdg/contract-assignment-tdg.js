@@ -22,11 +22,11 @@ class ContractAssignmentTDG {
         });
     }
 
-    saveContractAssignmentTable(data, callbackMethod) {
+    saveContractAssignmentTable(data, contract, callbackMethod) {
         $.ajax({
             method: "POST",
             url: "api/contract-assignment-api.php",
-            data: {method: "saveContractAssignmentTable", OV: JSON.stringify(data)}
+            data: {method: "saveContractAssignmentTable", OV: JSON.stringify(data), contract}
         }).done(function (result) {
 
             console.log(result);

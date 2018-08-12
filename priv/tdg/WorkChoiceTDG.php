@@ -21,12 +21,18 @@ class WorkChoiceTDG implements TDG {
             $conn = pdo_connect();
         }
 
+        $sql = $conn->prepare('INSERT INTO WorkChoice VALUES (:eid,:ct,:pt);');
+        $sql->bindValue('eid', $_SESSION['userId']);
+        $sql->bindValue('ct', $valueObject->contractType);
+        $sql->bindValue('pt', $valueObject->platform);
+        $sql->execute();
         
 
         return $conn->lastInsertId();
     }
 
     public static function save($valueObject, &$conn = NULL) {
+
 
         if (isset($valueObject->id)) {
             return WorkChoiceTDG::update($valueObject, $conn);
@@ -51,7 +57,8 @@ class WorkChoiceTDG implements TDG {
         
         $conn = pdo_connect();
         
-        $sql = $conn->prepare('SELECT employeeId, contractType, platformType FROM WorkChoice');
+        $sql = $conn->prepare('SELECT employeeId, contractType, platformType FROM WorkChoice WHERE employeeId=:eid');
+        $sql->bindValue('eid',$_SESSION['userId']);
         
         $sql->execute();
         
@@ -61,10 +68,33 @@ class WorkChoiceTDG implements TDG {
         
         foreach ($result as $entry) {
             //Do something on the data if needed
+            $entry->platform = $entry->platformType;
             $returnResult[] = $entry;
         }
         
         return $returnResult;
     }
+
+  public static function saveWorkChoiceTable($workChoices) {
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
+
+    $conn = pdo_connect();
+    print_r($workChoices);
+
+        $sql = $conn->prepare('DELETE FROM WorkChoice WHERE employeeId=:eid;');
+        $sql->bindValue('eid',$_SESSION['userId']);
+        $sql->execute();
+
+    foreach ($workChoices as $wc) {
+      if (empty($wc->contractType) || empty($wc->platform)) {
+        continue;
+      }
+
+      WorkChoiceTDG::save($wc,$conn);
+    }
+  }
 
 }

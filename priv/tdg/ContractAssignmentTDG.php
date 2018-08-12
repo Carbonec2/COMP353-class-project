@@ -21,6 +21,13 @@ class ContractAssignmentTDG implements TDG {
             $conn = pdo_connect();
         }
 
+        $sql = $conn->prepare('INSERT INTO ContractAssignment VALUES (:cid,:eid,:hrs)');
+        $sql->bindValue('cid',$_POST['contract']);
+        $sql->bindValue('eid',$valueObject->employeeId);
+        $sql->bindValue('hrs', $valueObject->hoursWorked);
+        $sql->execute();
+    
+      
         
 
         return $conn->lastInsertId();
@@ -51,7 +58,9 @@ class ContractAssignmentTDG implements TDG {
         
         $conn = pdo_connect();
         
-        $sql = $conn->prepare('SELECT employeeId, contractId, hoursWorked FROM ContractAssignment');
+        $sql = $conn->prepare('SELECT employeeId, firstName, middleInitial,lastName, contractId, hoursWorked FROM ContractAssignment
+          JOIN Employee ON Employee.id = ContractAssignment.employeeId
+          JOIN Account ON Employee.accountId = Account.id');
         
         $sql->execute();
         
@@ -61,10 +70,35 @@ class ContractAssignmentTDG implements TDG {
         
         foreach ($result as $entry) {
             //Do something on the data if needed
+            $entry->employeeName = "{$entry->firstName} {$entry->middleInitial} {$entry->lastName}";
             $returnResult[] = $entry;
         }
         
         return $returnResult;
     }
+    
+  public static function saveContractAssignmentTable($assignments) {
+        if (empty($_SESSION['userId'])) {
+            return;
+        }
+
+
+    $conn = pdo_connect();
+
+    $sql = $conn->prepare('DELETE FROM ContractAssignment WHERE contractId=:cid');
+    $sql->bindValue('cid',$_POST['contract']);
+    $sql->execute();
+
+
+    foreach ($assignments as $asg) {
+      if (empty($asg->employeeId)) {
+        continue;
+      }
+
+      ContractAssignmentTDG::save($asg,$conn);
+    }
+  }
+
+    
 
 }

@@ -12,7 +12,9 @@ switch (($_POST['method'])) {
     case 'getManagerHashtable':
         echo json_encode(EmployeeTDG::getManagerHashtable());
         break;
-    
+    case 'getPremiumLessSixtyHoursTable':
+        echo json_encode(EmployeeTDG::getPremiumLessSixtyHoursTable());
+        break;
     case 'getEmployeeHashtable':
         echo json_encode(EmployeeTDG::getEmployeeHashtable());
         break;

@@ -111,5 +111,31 @@ class ContractAssignmentTDG {
             $temp = ContractAssignmentTDG::save($asg, $contractId, $conn);
         }
     }
+    
+    public static function getPremiumContractDelayedContract(){
+        
+        $conn = pdo_connect();
+        
+        $sql = $conn->prepare('SELECT ContractAssignment.contractId, 
+            Contract.serviceStartDate, 
+            Contract.serviceEndDate,
+            Client.companyName
+
+            FROM ContractAssignment
+            LEFT JOIN Contract ON ContractAssignment.contractId = Contract.id
+            LEFT JOIN Employee ON ContractAssignment.employeeId = Employee.id
+            LEFT JOIN Client ON Contract.clientId = Client.id
+
+            WHERE serviceEndDate > DATE_ADD(Contract.serviceStartDate, INTERVAL 10 DAY) AND Employee.insurancePlanName = "Silver" 
+            AND Contract.contractType = "Premium"
+            GROUP BY Contract.id
+            HAVING COUNT(Employee.id) > 35');
+
+        $sql->execute();
+        
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        return $result;
+    }
 
 }

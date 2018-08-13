@@ -34,6 +34,8 @@ class ContractList {
         console.log(this.data);
 
         this.handsontable = new Handsontable($('#contractListHandsontable')[0], {
+            columnSorting: true,
+            sortIndicator: true,
             data: this.data,
             colHeaders: ['Manage assignments', 'Company Name', 'Manager', 'Annual Contract Value', 'Initial Amount',
                 'Service Start Date', 'Service End Date', 'Platform Type', 'Contract Type', 'Client Satisfaction Score (0-10)'],

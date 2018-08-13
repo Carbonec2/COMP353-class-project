@@ -2,8 +2,6 @@ class EmployeeTDG {
 
     getEmployeeTable(callbackMethod) {
 
-        //AJAX request to validate if we can authenticate the user
-
         $.ajax({
             method: "POST",
             url: "api/employee-api.php",
@@ -97,5 +95,29 @@ class EmployeeTDG {
             }
         });
     }
+    
+    getPremiumLessSixtyHoursTable(callbackMethod){
+        
+        $.ajax({
+            method: "POST",
+            url: "api/employee-api.php",
+            data: {method: "getPremiumLessSixtyHoursTable"}
+        }).done(function (result) {
+
+            console.log(result);
+
+            result = JSON.parse(result);
+
+            console.log(result);
+
+            if (typeof (callbackMethod) !== "undefined" && typeof (callbackMethod) === "function") {
+                callbackMethod(result);
+            }
+        });
+        
+    }
+    
+    
+    
 }
 

@@ -165,7 +165,7 @@ class ContractTDG implements TDG {
             LEFT JOIN Employee ON Employee.id = Contract.managerId
             LEFT JOIN Account ON Account.id = Employee.accountId
             WHERE 1 = 1 ' . $clientRestriction . '
-            ORDER BY Contract.id');
+            ORDER BY Contract.serviceStartDate');
 
         //We fetch the contract list related to the role
         if (isset($_SESSION['roleType'])) {
@@ -256,6 +256,7 @@ class ContractTDG implements TDG {
             FROM Contract
             LEFT JOIN Client ON Contract.clientId = Client.id
             WHERE Contract.serviceStartDate IS NOT NULL
+            ORDER BY Contract.serviceStartDate
             ');
         
         $sql->execute();        

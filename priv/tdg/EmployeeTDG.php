@@ -280,5 +280,28 @@ class EmployeeTDG implements TDG {
 
         return $returnResult;
     }
+    
+    public static function getPremiumLessSixtyHoursTable(){
+        
+        $conn = pdo_connect();
+        
+        $sql = $conn->prepare('SELECT Employee.id AS employeeId, firstName, 
+            middleInitial, lastName, weeklyHours
+            
+            FROM Employee 
+            LEFT JOIN Account ON Employee.accountId = Account.id
+            WHERE insurancePlanName = "Premium" 
+            GROUP BY Employee.id
+            HAVING sum(weeklyHours * 4) < 60');
+        
+        $sql->execute();
+        
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        return $result;
+        
+    }
+    
+    
 
 }

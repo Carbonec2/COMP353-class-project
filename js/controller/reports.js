@@ -2,12 +2,19 @@
 var thisPage;
 var premiumContractDelayedContract;
 var monthVentilation;
+var managerSatisfaction;
 
 $(document).ready(() => {
 
-    thisPage = new PremiumLessSixtyHours();
-    premiumContractDelayedContract = new PremiumContractDelayedContract();
-    monthVentilation =  new MonthVentilation();
+    if (globalRole === "Client") {
+        managerSatisfaction = new ManagerSatisfaction();
+        $('.notClient').hide();
+    } else {
+        thisPage = new PremiumLessSixtyHours();
+        premiumContractDelayedContract = new PremiumContractDelayedContract();
+        monthVentilation = new MonthVentilation();
+        $('.client').hide();
+    }
 
 });
 
@@ -33,7 +40,7 @@ class PremiumLessSixtyHours {
 
         this.fetchData();
     }
-    
+
     /**
      * Fetch data from the database
      * @returns {undefined}
@@ -54,7 +61,7 @@ class PremiumLessSixtyHours {
 class PremiumContractDelayedContract {
 
     constructor() {
-        
+
         this.data = [];
 
         this.handsontable = new Handsontable($('#premiumContractDelayedContract')[0], {
@@ -73,7 +80,7 @@ class PremiumContractDelayedContract {
 
         this.fetchData();
     }
-    
+
     /**
      * Fetch data from the database
      * @returns {undefined}
@@ -95,7 +102,7 @@ class PremiumContractDelayedContract {
 class MonthVentilation {
 
     constructor() {
-        
+
         this.data = [];
 
         this.handsontable = new Handsontable($('#monthVentilation')[0], {
@@ -114,7 +121,7 @@ class MonthVentilation {
 
         this.fetchData();
     }
-    
+
     /**
      * Fetch data from the database
      * @returns {undefined}
@@ -132,3 +139,43 @@ class MonthVentilation {
     }
 
 }
+
+class ManagerSatisfaction {
+
+    constructor() {
+
+        this.data = [];
+
+        this.handsontable = new Handsontable($('#managerSatisfaction')[0], {
+            data: this.data,
+            colHeaders: ['Manager', 'Satisfaction Rate'],
+            rowHeaders: true,
+            columns: [
+                {data: 'manager', type: 'text', readOnly: true},
+                {data: 'satisfactionRate', type: 'text', readOnly: true}
+            ],
+            minSpareRows: 0,
+            stretchH: "all"
+        });
+
+        this.fetchData();
+    }
+
+    /**
+     * Fetch data from the database
+     * @returns {undefined}
+     */
+    fetchData() {
+
+        contractTDG.managerSatisfaction((tableResult) => {
+
+            this.data = tableResult;
+            this.handsontable.updateSettings({
+                data: this.data
+            });
+            this.handsontable.render();
+        });
+    }
+
+}
+

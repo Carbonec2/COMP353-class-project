@@ -278,5 +278,42 @@ class ContractTDG implements TDG {
 
         return $returnResult;
     }
+    
+    public static function managerSatisfaction(){
+        
+        $conn = pdo_connect();
+        
+        $sql = $conn->prepare('
+            SELECT managerId, Account.firstName, 
+            Account.middleInitial, Account.lastName,
+            AVG(satisfactionScore) AS satisfactionRate
+
+            FROM Contract
+            LEFT JOIN Employee ON Employee.id = Contract.managerId
+            LEFT JOIN Account ON Account.id = Employee.accountId
+            GROUP BY managerId
+            ');
+        
+        $sql->execute();
+        
+        $result = $sql->fetchAll(PDO::FETCH_OBJ);
+        
+        $returnResult = [];
+        
+        foreach ($result as $value) {
+            
+            $object = new stdClass();
+            
+            $object->managerName = $value->firstName.' '.$value->middleInitial.' '.$value->lastName;
+            $object->satisfactionRate = 
+            
+            $returnResult[] = $object;
+            
+            
+        }
+        
+        return $returnResult;
+        
+    }
 
 }

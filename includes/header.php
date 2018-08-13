@@ -29,6 +29,7 @@
         
         if(isset($_SESSION['clientId'])&&!empty($_SESSION['clientId'])){
             echo '<li><span>Logged as Client</span></li>';
+            echo '<li><a href="index.php?page=reports" id="reports">Reports</a></li>';
         }
         echo '<li><a href="index.php?page=contractList" id="contractList">Contract List</a></li>';
         echo '</ul>';

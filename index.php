@@ -32,9 +32,9 @@ if ($wantedPage == 'login' && !empty($_SESSION['userId'])) {
 }
 
 //If the user wants to see a page forbidden to unlogged user
-if(empty($_SESSION['userId']) &&($wantedPage !='login' && $wantedPage != 'logout' && $wantedPage != 'welcome')){
-    $wantedPage = 'login';
-}
+//if(empty($_SESSION['userId']) &&($wantedPage !='login' && $wantedPage != 'logout' && $wantedPage != 'welcome')){
+//    $wantedPage = 'login';
+//}
 
 ?>
 

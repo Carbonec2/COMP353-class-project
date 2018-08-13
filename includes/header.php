@@ -11,13 +11,16 @@
             case 'Sales Associate':
                 echo '<li><span>Logged as Sales Associate</span></li>';
                 echo '<li><a href="index.php?page=createClientAccount" id="createClientAccount">Create a Client</a></li>';
+                echo '<li><a href="index.php?page=reports" id="employeeList">Reports</a></li>';
                 break;
             case 'Manager':
                 echo '<li><span>Logged as Manager</span></li>';
+                echo '<li><a href="index.php?page=reports" id="employeeList">Reports</a></li>';
                 break;
             case 'Admin':
                 echo '<li><span>Logged as Admin</span></li>';
                 echo '<li><a href="index.php?page=employeeList" id="employeeList">Employee List</a></li>';
+                echo '<li><a href="index.php?page=reports" id="employeeList">Reports</a></li>';
                 break;
             case 'Employee':
                 echo '<li><span>Logged as Employee</span></li>';

@@ -12,6 +12,9 @@ switch (($_POST['method'])) {
     case 'getPremiumContractDelayedContract':
         echo json_encode(ContractAssignmentTDG::getPremiumContractDelayedContract());
         break;
+    case 'monthVentilation':
+        echo json_encode(ContractAssignmentTDG::monthVentilation());
+        break;
 }
 
 function getOV() {

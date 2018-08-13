@@ -138,4 +138,25 @@ class ContractAssignmentTDG {
         return $result;
     }
 
+    public static function monthVentilation(){
+        $conn= pdo_connect();
+        
+        $sql = $conn->prepare('SELECT Contract.id, Contract.serviceStartDate, Contract.serviceEndDate, 
+            DeliverableStandard.dueAfter,
+            Contract.contractType,
+            DATE_ADD(Contract.serviceStartDate, INTERVAL DeliverableStandard.dueAfter DAY) AS theoricalDueDate
+            FROM ContractAssignment
+            LEFT JOIN Contract ON Contract.id = ContractAssignment.contractId
+            LEFT JOIN DeliverableStandard ON Contract.contractType = DeliverableStandard.contractType
+            WHERE deliverable = "First"
+            AND serviceStartDate < "2017-12-31" AND serviceStartDate > "2017-01-01"
+            ORDER BY serviceStartDate');
+        
+        $sql->execute();
+        
+        return $sql->fetchAll(PDO::FETCH_OBJ);
+        
+    }
+    
+    
 }

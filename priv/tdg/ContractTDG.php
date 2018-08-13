@@ -255,6 +255,7 @@ class ContractTDG implements TDG {
             Contract.contractType, Contract.serviceStartDate 
             FROM Contract
             LEFT JOIN Client ON Contract.clientId = Client.id
+            WHERE Contract.serviceStartDate IS NOT NULL
             ');
         
         $sql->execute();        
@@ -265,8 +266,8 @@ class ContractTDG implements TDG {
         $idToName = array();
 
         foreach ($result as $entry) {
-            $nameToId[$entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate] = $entry->id;
-            $idToName[$entry->id] = $entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate;
+            $nameToId[''.$entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate.''] = $entry->id;
+            $idToName[$entry->id] = ''.$entry->id . ' - ' . $entry->companyName . ' ' . $entry->contractType. ' '. $entry->serviceStartDate.'';
         }
 
         $returnResult = new stdClass();

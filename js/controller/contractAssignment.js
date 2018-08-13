@@ -1,5 +1,6 @@
 //global variable to the page instance
 var thisPage;
+var contract;
 
 $(document).ready(() => {
 
@@ -10,13 +11,15 @@ $(document).ready(() => {
 class ContractAssignment {
 
     constructor() {
-        
+
         const params = (new URL(document.location)).searchParams;
-        
+
         this.contract = params.get("contract");
+        contract = this.contract;
 
         this.bind();
         this.fetchEmployeeList();
+        this.fetchContractList();
 
         this.data = [];
 
@@ -24,18 +27,18 @@ class ContractAssignment {
 
         this.handsontable = new Handsontable($('#contractAssignmentHandsontable')[0], {
             data: this.data,
-            colHeaders: ['Employee', 'Contract', 'Hours Worked'],
+            colHeaders: ['Employee', 'Hours Worked'],
             rowHeaders: true,
             columns: [
                 {data: 'employeeName', type: 'dropdown', source: this.fetchEmployeeList},
-                {data: 'contractName', type: 'dropdown', source: this.fetchContractList},
+                //{data: 'contractName', type: 'dropdown', source: this.fetchContractList},
                 {data: 'hoursWorked', type: 'numeric'}
             ],
             minSpareRows: 1,
             stretchH: "all"
         });
-        
-        
+
+
 
         this.fetchData();
     }
@@ -53,12 +56,12 @@ class ContractAssignment {
      */
     fetchData() {
 
-        contractAssignmentTDG.getContractAssignmentTable(this.contract, (contractAssignmentTableResult) => {
+        contractAssignmentTDG.getContractAssignmentTable(contract, (contractAssignmentTableResult) => {
 
             console.log(contractAssignmentTableResult);
-            
+
             this.data = contractAssignmentTableResult;
-            
+
             this.handsontable.updateSettings({
                 data: this.data
             });
@@ -68,7 +71,7 @@ class ContractAssignment {
 
     fetchEmployeeList(query, process) {
 
-        employeeTDG.getInterestedEmployees(this.contract, function (result) {
+        employeeTDG.getInterestedEmployees(contract, (result) => {
             this.employeeNameToId = result.nameToId;
             this.employeeIdToName = result.idToName;
 
@@ -79,12 +82,13 @@ class ContractAssignment {
             if (typeof (process) === "function") {
                 process(names);
             }
-        }.bind(this));
+        });
     }
-    
+
     fetchContractList(query, process) {
 
-        contractTDG.getContractList(this.contract, function (result) {
+        contractTDG.getContractList(contract, (result) => {
+            console.log(result);
             this.contractNameToId = result.nameToId;
             this.contractIdToName = result.idToName;
 
@@ -95,7 +99,7 @@ class ContractAssignment {
             if (typeof (process) === "function") {
                 process(names);
             }
-        }.bind(this));
+        });
     }
 
     /**
@@ -123,6 +127,7 @@ class ContractAssignment {
         //We revert the dropdown from the hashtable
         for (let i = 0; i < data.length; i++) {
             data[i].employeeId = this.employeeNameToId[data[i].employeeName];
+            //data[i].contractId = this.contractNameToId[data[i].contractName];
         }
 
         return data;

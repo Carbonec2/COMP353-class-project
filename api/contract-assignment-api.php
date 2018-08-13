@@ -7,7 +7,7 @@ switch (($_POST['method'])) {
         echo json_encode(ContractAssignmentTDG::getContractAssignmentTable(getOV()));
         break;
     case 'saveContractAssignmentTable':
-        echo ContractAssignmentTDG::saveContractAssignmentTable(getOV());
+        echo ContractAssignmentTDG::saveContractAssignmentTable(getOV(), $_POST['contract']);
         break;
 }
 

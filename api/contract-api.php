@@ -13,7 +13,7 @@ switch (($_POST['method'])) {
         echo ContractTDG::deleteContractFromList(getOV());
         break;
     case 'getContractList':
-        echo json_encode(ContractTDG::getContractList());
+        echo json_encode(ContractTDG::getContractList($_POST['contractId']));
         break;
     case 'insert':
         echo json_encode(ContractTDG::insert(getOV()));

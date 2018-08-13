@@ -26,7 +26,7 @@ class ContractAssignmentTDG {
         $.ajax({
             method: "POST",
             url: "api/contract-assignment-api.php",
-            data: {method: "saveContractAssignmentTable", OV: JSON.stringify(data), contract}
+            data: {method: "saveContractAssignmentTable", OV: JSON.stringify(data), contract:contract}
         }).done(function (result) {
 
             console.log(result);
